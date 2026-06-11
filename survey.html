@@ -58,7 +58,7 @@
       transition: all 0.3s ease;
     }
 
-    /* 선택된 버튼의 색상 (E.Z.C.S 메인 컬러와 유사한 파란색) */
+    /* 선택된 버튼의 색상 (E.Z.C.S 메인 컬러) */
     .tab-btn.active {
       background-color: #2563eb;
       color: #ffffff;
@@ -75,7 +75,7 @@
 
     iframe {
       width: 100%;
-      height: 800px; /* 설문지 길이에 따라 조절 가능 */
+      height: 850px; /* 설문지 길이에 맞게 여유 있게 조절 */
       border: none;
     }
   </style>
@@ -92,15 +92,17 @@
     </div>
 
     <div class="iframe-container">
-      <iframe id="googleFormIframe" src="여기에_개인용_구글폼_임베드_주소를_넣으세요" title="수요조사 설문지">로드 중…</iframe>
+      <iframe id="googleFormIframe" src="https://docs.google.com/forms/d/e/1FAIpQLSfe6ch2os0bzkxixH1ZvvevtWMxYUQvXgdmK5kbz6QPkCDYyQ/viewform?embedded=true" title="수요조사 설문지">로드 중…</iframe>
     </div>
   </div>
 
   <script>
-    // 구글 폼 임베드 주소 설정 (작성하신 구글 폼의 삽입용 주소로 변경하세요)
     const formUrls = {
-      personal: "https://docs.google.com/forms/d/e/1FAIpQLSfe6ch2os0bzkxixH1ZvvevtWMxYUQvXgdmK5kbz6QPkCDYyQ/viewform?usp=dialog",
-      corporate: "여기에_기업용_구글폼_임베드_주소를_넣으세요"
+      // 개인용 주소 뒤에 &embedded=true 를 붙여 연동을 매끄럽게 만들었습니다.
+      personal: "https://docs.google.com/forms/d/e/1FAIpQLSfe6ch2os0bzkxixH1ZvvevtWMxYUQvXgdmK5kbz6QPkCDYyQ/viewform?embedded=true",
+      
+      // 수정 포인트 2: 아래 큰따옴표 안에 '기업용 구글 폼 주소'를 넣고 뒤에 &embedded=true 를 붙여주세요!
+      corporate: "여기에_기업용_구글폼_주소를_넣으세요&embedded=true"
     };
 
     function changeForm(type) {
@@ -124,3 +126,4 @@
 
 </body>
 </html>
+
