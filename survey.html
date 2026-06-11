@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>교육 수요조사</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="container section">
+<h1>교육 수요조사</h1>
+<form id="surveyForm" class="form">
+<input placeholder="이름" required>
+<input placeholder="연락처" required>
+<input type="email" placeholder="이메일">
+<select>
+<option>관심분야 선택</option>
+<option>생성형 AI</option>
+<option>빅데이터</option>
+<option>전산회계</option>
+</select>
+<textarea placeholder="문의내용"></textarea>
+<button type="submit">제출하기</button>
+</form>
+<p>Google Apps Script URL을 survey.js에 연결하면 구글 시트 저장 가능</p>
+</div>
+<script src="js/survey.js"></script>
+</body>
+</html>

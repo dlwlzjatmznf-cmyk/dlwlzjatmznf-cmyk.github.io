@@ -1,0 +1,21 @@
+
+*{box-sizing:border-box}body{margin:0;font-family:Pretendard,Arial,sans-serif;color:#222}
+.container{width:min(1200px,92%);margin:auto}
+.header{background:#fff;border-bottom:1px solid #eee;position:sticky;top:0}
+.nav{display:flex;justify-content:space-between;align-items:center;padding:16px 0}
+.logo{font-weight:700}.logo span{margin-left:8px}
+nav a{margin:0 10px;text-decoration:none;color:#222}
+.cta,.btn{background:#1d4ed8;color:#fff;padding:12px 18px;border-radius:8px;text-decoration:none}
+.hero{background:linear-gradient(135deg,#031b4e,#0a49c9);color:#fff;padding:90px 0}
+.hero-grid{display:grid;grid-template-columns:2fr 1fr;gap:30px}
+.badge{color:#8cc4ff}.hero h1{font-size:56px;margin:10px 0}
+.panel{background:#fff;color:#222;padding:24px;border-radius:14px}
+.section{padding:60px 0}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
+.card{border:1px solid #e5e7eb;padding:20px;border-radius:12px}
+.notice li{padding:10px 0;border-bottom:1px solid #eee}
+.footer{background:#07152f;color:#fff;padding:40px 0}
+.form{display:grid;gap:12px;max-width:700px}
+input,select,textarea,button{padding:14px}
+button{background:#1d4ed8;color:#fff;border:none}
+@media(max-width:768px){.hero-grid{grid-template-columns:1fr}.hero h1{font-size:38px}}
