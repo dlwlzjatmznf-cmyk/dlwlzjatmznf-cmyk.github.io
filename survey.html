@@ -1,26 +1,27 @@
-```html
 <!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
 <title>교육 수요조사</title>
 
 <style>
+
 body{
-font-family:'Noto Sans KR',sans-serif;
+font-family:'맑은 고딕';
 background:#f5f7fb;
 margin:0;
 padding:30px;
 }
 
 .container{
-max-width:1000px;
+max-width:900px;
 margin:auto;
 background:#fff;
 padding:30px;
 border-radius:10px;
-box-shadow:0 0 10px rgba(0,0,0,.08);
+box-shadow:0 0 10px rgba(0,0,0,.1);
 }
 
 h1{
@@ -28,52 +29,51 @@ text-align:center;
 color:#003a8c;
 }
 
-.type-select{
+.type{
 display:flex;
 gap:20px;
 justify-content:center;
-margin:30px 0;
+margin-bottom:30px;
 }
 
-.type-select button{
+.type button{
 padding:15px 30px;
 border:none;
 background:#003a8c;
-color:#fff;
+color:white;
 cursor:pointer;
-border-radius:5px;
-font-size:16px;
+border-radius:6px;
 }
 
 .question{
-margin-bottom:25px;
+margin-bottom:20px;
 }
 
-.question label{
-font-weight:bold;
+label{
 display:block;
-margin-bottom:10px;
+margin-bottom:5px;
+font-weight:bold;
 }
 
-select,input{
+input,select{
 width:100%;
 padding:10px;
+}
+
+.hidden{
+display:none;
 }
 
 .submit-btn{
 width:100%;
 padding:15px;
 background:#0057d8;
-color:#fff;
+color:white;
 border:none;
 font-size:18px;
 cursor:pointer;
-border-radius:5px;
 }
 
-.hidden{
-display:none;
-}
 </style>
 
 </head>
@@ -83,16 +83,16 @@ display:none;
 
 <h1>교육 수요조사</h1>
 
-<div class="type-select">
-<button onclick="showForm('personal')">일반인(구직자)</button>
-<button onclick="showForm('company')">기업체</button>
+<div class="type">
+<button onclick="showPersonal()">일반인(구직자)</button>
+<button onclick="showCompany()">기업체</button>
 </div>
 
 <form id="surveyForm">
 
-<input type="hidden" id="surveyType">
+<input type="hidden" id="type">
 
-<div id="personalForm" class="hidden">
+<div id="personal" class="hidden">
 
 <div class="question">
 <label>성명</label>
@@ -105,7 +105,7 @@ display:none;
 </div>
 
 <div class="question">
-<label>Q1. 연령대</label>
+<label>Q1 연령대</label>
 <select id="q1">
 <option>20대 이하</option>
 <option>30대</option>
@@ -116,68 +116,22 @@ display:none;
 </div>
 
 <div class="question">
-<label>Q2. 현재 경제활동 상태</label>
-<select id="q2">
-<option>구직자</option>
-<option>졸업예정자</option>
-<option>재직자</option>
-<option>자영업자</option>
-<option>기타</option>
-</select>
+<label>Q2 경제활동 상태</label>
+<input id="q2">
 </div>
 
-<div class="question">
-<label>Q3. 국민내일배움카드 보유 여부</label>
-<select id="q3">
-<option>보유 중</option>
-<option>발급 예정</option>
-<option>없음</option>
-</select>
-</div>
-
-<div class="question">
-<label>Q4. 생성형AI 활용 필요성</label>
-<select id="q4">
-<option>매우 도움 됨</option>
-<option>약간 도움 됨</option>
-<option>보통</option>
-<option>별로 도움 안됨</option>
-</select>
-</div>
-
-<div class="question">
-<label>Q5. 가장 배우고 싶은 직무능력</label>
-<input id="q5">
-</div>
-
-<div class="question">
-<label>Q6. 과정 참여 의향</label>
-<input id="q6">
-</div>
-
-<div class="question">
-<label>Q7. 관심 이유</label>
-<input id="q7">
-</div>
-
-<div class="question">
-<label>Q8. 선호 훈련기간</label>
-<input id="q8">
-</div>
-
-<div class="question">
-<label>Q9. 중요 요소</label>
-<input id="q9">
-</div>
-
-<div class="question">
-<label>Q10. 필요한 지원사항</label>
-<input id="q10">
-</div>
+<div class="question"><label>Q3 국민내일배움카드</label><input id="q3"></div>
+<div class="question"><label>Q4 생성형AI 인식</label><input id="q4"></div>
+<div class="question"><label>Q5 배우고 싶은 직무</label><input id="q5"></div>
+<div class="question"><label>Q6 참여 의향</label><input id="q6"></div>
+<div class="question"><label>Q7 관심 이유</label><input id="q7"></div>
+<div class="question"><label>Q8 선호 기간</label><input id="q8"></div>
+<div class="question"><label>Q9 중요 요소</label><input id="q9"></div>
+<div class="question"><label>Q10 지원사항</label><input id="q10"></div>
 
 </div>
 
-<div id="companyForm" class="hidden">
+<div id="company" class="hidden">
 
 <div class="question">
 <label>기업명</label>
@@ -185,7 +139,7 @@ display:none;
 </div>
 
 <div class="question">
-<label>담당자명</label>
+<label>담당자</label>
 <input id="manager">
 </div>
 
@@ -194,59 +148,20 @@ display:none;
 <input id="cphone">
 </div>
 
-<div class="question">
-<label>Q1. 업종</label>
-<input id="cq1">
-</div>
-
-<div class="question">
-<label>Q2. 근로자 수</label>
-<input id="cq2">
-</div>
-
-<div class="question">
-<label>Q3. 개선이 필요한 분야</label>
-<input id="cq3">
-</div>
-
-<div class="question">
-<label>Q4. AI 도입 계획</label>
-<input id="cq4">
-</div>
-
-<div class="question">
-<label>Q5. 선호 인재 역량</label>
-<input id="cq5">
-</div>
-
-<div class="question">
-<label>Q6. 채용 의향</label>
-<input id="cq6">
-</div>
-
-<div class="question">
-<label>Q7. 기대 효과</label>
-<input id="cq7">
-</div>
-
-<div class="question">
-<label>Q8. MOU 체결 의향</label>
-<input id="cq8">
-</div>
-
-<div class="question">
-<label>Q9. 재직자 교육 의향</label>
-<input id="cq9">
-</div>
-
-<div class="question">
-<label>Q10. 훈련기관 역할</label>
-<input id="cq10">
-</div>
+<div class="question"><label>Q1 업종</label><input id="cq1"></div>
+<div class="question"><label>Q2 근로자수</label><input id="cq2"></div>
+<div class="question"><label>Q3 개선분야</label><input id="cq3"></div>
+<div class="question"><label>Q4 AI도입계획</label><input id="cq4"></div>
+<div class="question"><label>Q5 선호역량</label><input id="cq5"></div>
+<div class="question"><label>Q6 채용의향</label><input id="cq6"></div>
+<div class="question"><label>Q7 기대효과</label><input id="cq7"></div>
+<div class="question"><label>Q8 MOU의향</label><input id="cq8"></div>
+<div class="question"><label>Q9 재직자교육</label><input id="cq9"></div>
+<div class="question"><label>Q10 기관역할</label><input id="cq10"></div>
 
 </div>
 
-<button class="submit-btn" type="submit">
+<button class="submit-btn">
 제출하기
 </button>
 
@@ -259,31 +174,28 @@ display:none;
 const SCRIPT_URL =
 "https://script.google.com/macros/s/AKfycbyvAKH75bL5iSh2EaobMqaBLBXBxMOd1k1TALVS1xZGgebU35nqK9iBwYzWzHodbvZMeA/exec";
 
-function showForm(type){
+function showPersonal(){
 
-document.getElementById('surveyType').value = type;
+document.getElementById("personal").classList.remove("hidden");
+document.getElementById("company").classList.add("hidden");
 
-document.getElementById('personalForm').classList.add('hidden');
-document.getElementById('companyForm').classList.add('hidden');
-
-if(type==="personal"){
-document.getElementById('personalForm').classList.remove('hidden');
+document.getElementById("type").value="personal";
 }
 
-if(type==="company"){
-document.getElementById('companyForm').classList.remove('hidden');
-}
+function showCompany(){
 
+document.getElementById("company").classList.remove("hidden");
+document.getElementById("personal").classList.add("hidden");
+
+document.getElementById("type").value="company";
 }
 
 document.getElementById("surveyForm")
-.addEventListener("submit",async function(e){
+.addEventListener("submit",function(e){
 
 e.preventDefault();
 
-const data = {
-type : document.getElementById('surveyType').value
-};
+const data={};
 
 document.querySelectorAll("input,select")
 .forEach(el=>{
@@ -292,12 +204,13 @@ data[el.id]=el.value;
 }
 });
 
-await fetch(SCRIPT_URL,{
+fetch(SCRIPT_URL,{
 method:"POST",
+mode:"no-cors",
 body:JSON.stringify(data)
 });
 
-alert("수요조사가 정상적으로 제출되었습니다.");
+alert("수요조사가 제출되었습니다.");
 
 this.reset();
 
@@ -307,4 +220,3 @@ this.reset();
 
 </body>
 </html>
-```
