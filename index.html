@@ -1,55 +1,131 @@
-<section id="courses" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center space-y-4 mb-16">
-        <span class="text-blue-600 font-bold text-sm tracking-widest uppercase">Our Courses</span>
-        <h2 class="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">주요 훈련과정</h2>
-        <p class="text-slate-500 max-w-2xl mx-auto text-sm sm:text-base">원장님이 엄선하신 이지컴스쿨학원만의 취업 맞춤형 4대 주력 핵심 훈련과정입니다.</p>
-        <div class="w-16 h-1 bg-blue-600 mx-auto rounded-full"></div>
-    </div>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이지컴스쿨학원</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>body { font-family: 'Noto Sans KR', sans-serif; scroll-behavior: smooth; }</style>
+    <script>
+        function handleLogoError(img) {
+            const fallbacks = ['logo.jpg', 'logo.png', '%EC%9D%B4%EC%A7%80%EC%8B%A0%EB%A1%9C%EA%B3%A0%28%EA%B0%80%EB%A1%9C%29.jpg', '이지신로고(가로).jpg'];
+            if (!img.dataset.fallbackIndex) img.dataset.fallbackIndex = "0";
+            let idx = parseInt(img.dataset.fallbackIndex);
+            if (idx < fallbacks.length) {
+                img.dataset.fallbackIndex = (idx + 1).toString();
+                img.src = fallbacks[idx];
+            } else {
+                img.outerHTML = `<div class="flex items-center gap-1.5 font-bold text-xl sm:text-2xl select-none"><span class="text-slate-900 font-extrabold tracking-tight">EZ</span><span class="text-red-500 font-black relative -top-[1px]">O</span><span class="text-red-500 font-black relative -left-[3px] -top-[1px]">m</span><span class="text-slate-900 font-black tracking-tight ml-1">이지컴스쿨</span></div>`;
+            }
+        }
+    </script>
+</head>
+<body class="text-slate-800 bg-slate-50 min-h-screen flex flex-col">
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        
-        <div class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-slate-100 flex flex-col h-full">
-            <div class="h-44 overflow-hidden relative">
-                <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=600&q=80" alt="재무빅데이터" class="w-full h-full object-cover">
-                <span class="absolute top-4 left-4 bg-emerald-500 text-white text-[10px] font-bold px-2.5 py-1 rounded-full">빅데이터</span>
+    <header class="bg-white border-b border-slate-100 sticky top-0 z-50 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="index.html" class="flex items-center h-12">
+                <img src="logo.jpg" alt="EZCOM 이지컴스쿨" class="h-10 sm:h-12 w-auto object-contain" onerror="handleLogoError(this);">
+            </a>
+            <nav class="hidden md:flex items-center gap-8 font-medium text-slate-600">
+                <a href="#about" class="hover:text-blue-600 transition-colors">학원소개</a>
+                <a href="#courses" class="hover:text-blue-600 transition-colors">훈련과정</a>
+                <a href="#notice" class="hover:text-blue-600 transition-colors">공지사항</a>
+                <a href="survey.html" class="hover:text-blue-600 transition-colors flex items-center gap-1"><span>수요조사</span><span class="bg-red-500 text-white text-[10px] px-1.5 py-0.5 rounded-full font-bold animate-pulse">HOT</span></a>
+            </nav>
+            <a href="tel:0553569821" class="bg-blue-600 hover:bg-blue-700 text-white font-bold px-4 py-2 sm:px-5 sm:py-2.5 rounded-full shadow-lg shadow-blue-600/20 transition-all flex items-center gap-2 text-sm sm:text-base">
+                <i class="fa-solid fa-phone"></i><span class="hidden sm:inline">055-356-9821</span>
+            </a>
+        </div>
+    </header>
+
+    <section class="relative bg-slate-900 text-white overflow-hidden py-16 lg:py-24">
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1596495577886-d920f1fb7538?auto=format&fit=crop&w=1600&q=80" alt="강의실 전경" class="w-full h-full object-cover opacity-30">
+            <div class="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-900/95 to-blue-950/80"></div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <div class="lg:col-span-7 space-y-6">
+                <div class="inline-flex items-center gap-2 bg-blue-500/20 text-blue-300 border border-blue-400/30 px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-semibold">
+                    <span class="w-2 h-2 rounded-full bg-blue-400 animate-pulse"></span>국비지원의 실무형 학원
+                </div>
+                <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black leading-tight tracking-tight">
+                    자격증 취득률까지<br class="sm:hidden"> 확실하게 잡는<br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">이지컴스쿨학원</span>
+                </h1>
+                <p class="text-base sm:text-lg text-slate-300 leading-relaxed max-w-xl">산업구조 변화에 유연하게 대응하는 명품 인재 양성! 단순 자격증 취득을 넘어 현업에서 즉각 발휘되는 실무 맞춤 교육으로 취업까지 탄탄하게 연결해 드립니다.</p>
             </div>
-            <div class="p-6">
-                <h3 class="font-bold text-lg text-slate-900">재무빅데이터 분석사</h3>
-                <p class="text-slate-500 text-sm mt-2">파이썬 기반의 데이터 정제 및 고난도 가공 역량을 실무 사례로 정복합니다.</p>
+            <div class="lg:col-span-5">
+                <div class="bg-white text-slate-800 p-8 rounded-2xl shadow-2xl border border-slate-100 space-y-5 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-blue-50 rounded-full -mr-8 -mt-8 -z-10"></div>
+                    <div class="flex items-center gap-3">
+                        <div class="bg-blue-100 text-blue-600 w-12 h-12 rounded-xl flex items-center justify-center text-xl"><i class="fa-solid fa-clipboard-question"></i></div>
+                        <div><h3 class="font-bold text-xl text-slate-900">교육 수요조사</h3><p class="text-xs text-slate-500">더 가치 있는 배움을 제안해 주세요</p></div>
+                    </div>
+                    <p class="text-slate-600 leading-relaxed text-sm">이지컴스쿨은 여러분의 목소리를 경청하여 신규 훈련 과정을 개설합니다. 관심 있거나 개설을 원하시는 과정이 있다면 언제든 알려주세요!</p>
+                    <a href="survey.html" class="block text-center bg-blue-600 hover:bg-blue-700 text-white font-bold py-3.5 rounded-xl shadow-lg shadow-blue-600/30 hover:shadow-blue-600/40 transform hover:-translate-y-0.5 transition-all text-sm sm:text-base">수요조사 작성하기 <i class="fa-solid fa-arrow-right ml-1"></i></a>
+                </div>
             </div>
         </div>
+    </section>
 
-        <div class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-slate-100 flex flex-col h-full">
-            <div class="h-44 overflow-hidden relative">
-                <img src="https://images.unsplash.com/photo-1677442136019-21780efad99a?auto=format&fit=crop&w=600&q=80" alt="생성형 AI" class="w-full h-full object-cover">
-                <span class="absolute top-4 left-4 bg-purple-500 text-white text-[10px] font-bold px-2.5 py-1 rounded-full">인공지능</span>
-            </div>
-            <div class="p-6">
-                <h3 class="font-bold text-lg text-slate-900">생성형 AI 전문가</h3>
-                <p class="text-slate-500 text-sm mt-2">ChatGPT 등 프롬프트 기법을 배워 업무 속도를 10배 끌어올리는 실무 과정입니다.</p>
+    <section id="about" class="py-20 bg-white border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1543269664-56d93c1b41a6?auto=format&fit=crop&w=800&q=80" alt="컴퓨터 실습 강의실" class="rounded-2xl shadow-xl w-full h-[320px] object-cover">
+                </div>
+                <div class="space-y-6">
+                    <span class="text-blue-600 font-bold text-sm tracking-widest uppercase">About EZCOM</span>
+                    <h2 class="text-3xl font-black text-slate-900 leading-tight">초보자도 완벽하게 적응하는<br>최적의 컴퓨터 교육 시설</h2>
+                    <p class="text-slate-600 leading-relaxed">컴퓨터를 처음 만져보시는 분도 걱정하실 필요 없습니다. 이지컴스쿨학원은 기초적인 타이핑 및 기본 조작부터 고난도 파이썬 데이터 분석, 국가공인 실무 자격증 취득까지 맞춤 단계별 학습 여정을 제공합니다. 최고의 만족도를 자랑하는 강사진이 곁에서 정성껏 도와드립니다.</p>
+                </div>
             </div>
         </div>
+    </section>
 
-        <div class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-slate-100 flex flex-col h-full">
-            <div class="h-44 overflow-hidden relative">
-                <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=600&q=80" alt="컴퓨터활용능력" class="w-full h-full object-cover">
-                <span class="absolute top-4 left-4 bg-blue-500 text-white text-[10px] font-bold px-2.5 py-1 rounded-full">국가자격</span>
+    <section id="courses" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center space-y-4 mb-16">
+            <h2 class="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">주요 훈련과정</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="bg-white rounded-2xl overflow-hidden shadow-md border border-slate-100 flex flex-col h-full group">
+                <div class="h-44 overflow-hidden"><img src="https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=600&q=80" alt="재무빅데이터" class="w-full h-full object-cover"></div>
+                <div class="p-6">
+                    <h3 class="font-bold text-lg">재무빅데이터 분석사</h3>
+                    <p class="text-slate-500 text-sm mt-2">파이썬 기반의 데이터 정제 및 고난도 가공 역량을 실무 사례로 정복합니다.</p>
+                </div>
             </div>
-            <div class="p-6">
-                <h3 class="font-bold text-lg text-slate-900">컴퓨터활용능력 1급</h3>
-                <p class="text-slate-500 text-sm mt-2">합격의 당락을 가르는 난도 높은 엑셀과 액세스 실습을 단기에 파헤칩니다.</p>
+            <div class="bg-white rounded-2xl overflow-hidden shadow-md border border-slate-100 flex flex-col h-full group">
+                <div class="h-44 overflow-hidden"><img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=600&q=80" alt="생성형 AI" class="w-full h-full object-cover"></div>
+                <div class="p-6">
+                    <h3 class="font-bold text-lg">생성형 AI 전문가</h3>
+                    <p class="text-slate-500 text-sm mt-2">ChatGPT 등 프롬프트 기법을 배워 업무의 속도를 10배 끌어올리는 실무 과정입니다.</p>
+                </div>
+            </div>
+            <div class="bg-white rounded-2xl overflow-hidden shadow-md border border-slate-100 flex flex-col h-full group">
+                <div class="h-44 overflow-hidden"><img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=600&q=80" alt="컴퓨터활용능력" class="w-full h-full object-cover"></div>
+                <div class="p-6">
+                    <h3 class="font-bold text-lg">컴퓨터활용능력 1급</h3>
+                    <p class="text-slate-500 text-sm mt-2">합격의 당락을 가르는 난도 높은 엑셀과 액세스 실습을 단기에 파헤칩니다.</p>
+                </div>
+            </div>
+            <div class="bg-white rounded-2xl overflow-hidden shadow-md border border-slate-100 flex flex-col h-full group">
+                <div class="h-44 overflow-hidden"><img src="https://images.unsplash.com/photo-1554744512-d6ece60f1fc8?auto=format&fit=crop&w=600&q=80" alt="전산회계" class="w-full h-full object-cover"></div>
+                <div class="p-6">
+                    <h3 class="font-bold text-lg">전산회계 1급</h3>
+                    <p class="text-slate-500 text-sm mt-2">기업 회계 실무 프로그램 조작법과 분개 이론을 체계적으로 훈련합니다.</p>
+                </div>
             </div>
         </div>
+    </section>
 
-        <div class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-slate-100 flex flex-col h-full">
-            <div class="h-44 overflow-hidden relative">
-                <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=600&q=80" alt="전산회계" class="w-full h-full object-cover">
-                <span class="absolute top-4 left-4 bg-amber-500 text-white text-[10px] font-bold px-2.5 py-1 rounded-full">세무회계</span>
-            </div>
-            <div class="p-6">
-                <h3 class="font-bold text-lg text-slate-900">전산회계 1급</h3>
-                <p class="text-slate-500 text-sm mt-2">기업 회계 실무 프로그램 조작법과 분개 이론을 체계적으로 훈련합니다.</p>
-            </div>
+    <footer class="bg-slate-950 text-slate-400 py-16 border-t border-slate-900 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p>&copy; 2026 이지컴스쿨학원. All Rights Reserved.</p>
         </div>
-    </div>
-</section>
+    </footer>
+</body>
+</html>
