@@ -94,14 +94,19 @@
     <div class="iframe-container">
       <iframe id="googleFormIframe" src="https://docs.google.com/forms/d/e/1FAIpQLSfe6ch2os0bzkxixH1ZvvevtWMxYUQvXgdmK5kbz6QPkCDYyQ/viewform?embedded=true" title="수요조사 설문지">로드 중…</iframe>
     </div>
+
+    <div style="margin-top: 30px; padding-bottom: 20px;">
+      <a href="index.html" style="text-decoration: none; background-color: #f1f5f9; color: #475569; padding: 12px 24px; border-radius: 8px; font-weight: bold; font-size: 14px; transition: background-color 0.3s;">
+        ← 홈 화면으로 돌아가기
+      </a>
+    </div>
   </div>
 
   <script>
     const formUrls = {
-      // 개인용 주소 뒤에 &embedded=true 를 붙여 연동을 매끄럽게 만들었습니다.
+      // 개인용 주소
       personal: "https://docs.google.com/forms/d/e/1FAIpQLSfe6ch2os0bzkxixH1ZvvevtWMxYUQvXgdmK5kbz6QPkCDYyQ/viewform?embedded=true",
-      
-      // 수정 포인트 2: 아래 큰따옴표 안에 '기업용 구글 폼 주소'를 넣고 뒤에 &embedded=true 를 붙여주세요!
+      // 기업용 주소 (실제 주소로 수정해주세요)
       corporate: "여기에_기업용_구글폼_주소를_넣으세요&embedded=true"
     };
 
@@ -126,4 +131,3 @@
 
 </body>
 </html>
-
