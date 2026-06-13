@@ -95,10 +95,11 @@
       <iframe id="googleFormIframe" src="https://docs.google.com/forms/d/e/1FAIpQLSfe6ch2os0bzkxixH1ZvvevtWMxYUQvXgdmK5kbz6QPkCDYyQ/viewform?embedded=true" title="수요조사 설문지">로드 중…</iframe>
     </div>
 
+    <!-- ★ 거울 미로 현상 해결을 위한 지능형 버튼으로 교체 -->
     <div style="margin-top: 30px; padding-bottom: 20px;">
-      <a href="index.html" style="text-decoration: none; background-color: #f1f5f9; color: #475569; padding: 12px 24px; border-radius: 8px; font-weight: bold; font-size: 14px; transition: background-color 0.3s;">
-        ← 홈 화면으로 돌아가기
-      </a>
+      <button onclick="handleBackToHome()" style="background-color: #f1f5f9; color: #475569; padding: 12px 24px; border-radius: 8px; font-weight: bold; font-size: 14px; transition: background-color 0.3s; border: none; cursor: pointer; hover: background-color: #e2e8f0;">
+        ← 화면 닫기 / 홈으로 돌아가기
+      </button>
     </div>
   </div>
 
@@ -106,7 +107,7 @@
     const formUrls = {
       // 개인용 주소
       personal: "https://docs.google.com/forms/d/e/1FAIpQLSfe6ch2os0bzkxixH1ZvvevtWMxYUQvXgdmK5kbz6QPkCDYyQ/viewform?embedded=true",
-      // 기업용 주소 (실제 주소로 수정해주세요)
+      // 기업용 주소 (나중에 기업용 구글폼 주소가 생기면 아래 큰따옴표 안에 넣으시면 됩니다)
       corporate: "여기에_기업용_구글폼_주소를_넣으세요&embedded=true"
     };
 
@@ -115,16 +116,27 @@
       const btnPersonal = document.getElementById('btn-personal');
       const btnCorporate = document.getElementById('btn-corporate');
 
-      // 선택한 타입에 맞게 iframe 주소(src) 변경
       iframe.src = formUrls[type];
 
-      // 버튼 색상(active 클래스) 변경 로직
       if (type === 'personal') {
         btnPersonal.classList.add('active');
         btnCorporate.classList.remove('active');
       } else {
         btnCorporate.classList.add('active');
         btnPersonal.classList.remove('active');
+      }
+    }
+
+    // ★ 팝업창 여부를 감지하여 똑똑하게 닫아주는 신규 함수
+    function handleBackToHome() {
+      // 만약 iframe(팝업창) 내부에서 열린 상태라면 부모 창의 모달 닫기 함수를 실행
+      if (window.self !== window.top) {
+        if (window.parent && typeof window.parent.closeSurveyModal === 'function') {
+          window.parent.closeSurveyModal();
+        }
+      } else {
+        // 만약 주소창에 직접 쳐서 단독 페이지로 들어왔다면 메인 홈으로 이동
+        location.href = "index.html";
       }
     }
   </script>
