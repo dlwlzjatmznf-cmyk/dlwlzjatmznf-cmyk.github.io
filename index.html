@@ -253,121 +253,184 @@
 <!-- ========================================================== -->
     <!-- ✨ [업그레이드] 온라인 상담 및 답변 조회 섹션 -->
     <!-- ========================================================== -->
-    <section id="counsel" class="bg-slate-50 py-24 border-b border-slate-100">
-        <div class="max-w-3xl mx-auto px-6">
+<section id="counsel" class="bg-slate-50 py-24 border-b border-slate-100">
+        <div class="max-w-4xl mx-auto px-6">
             
-            <!-- 섹션 헤더 -->
             <div class="text-center space-y-3 mb-12">
-                <span class="text-xs font-bold text-brand-blue tracking-widest uppercase">ONLINE COUNSEL</span>
-                <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight">온라인 상담 문의</h2>
-                <p class="text-slate-500 text-sm">교육과정 문의를 남기시거나, 작성하신 비밀글의 답변을 확인하실 수 있습니다.</p>
+                <span class="text-xs font-bold text-brand-blue tracking-widest uppercase">ONLINE Q&A</span>
+                <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight">온라인 상담 게시판</h2>
+                <p class="text-slate-500 text-sm">궁금한 점을 남겨주시면 원장님이 직접 성심성의껏 답변해 드립니다.</p>
                 <div class="w-12 h-1 bg-brand-blue mx-auto rounded-full mt-4"></div>
             </div>
 
-            <!-- 탭 메뉴 버튼 -->
-            <div class="flex justify-center gap-2 mb-8 bg-slate-200/60 p-1.5 rounded-2xl max-w-md mx-auto">
-                <button type="button" id="tabSubmitBtn" onclick="switchTab('submit')" class="flex-1 py-3 text-sm font-bold rounded-xl transition-all duration-200 bg-white text-slate-900 shadow-sm">
-                    상담 신청하기
-                </button>
-                <button type="button" id="tabCheckBtn" onclick="switchTab('check')" class="flex-1 py-3 text-sm font-bold rounded-xl transition-all duration-200 text-slate-500 hover:text-slate-800">
-                    나의 답변 확인하기
-                </button>
+            <div id="counselListView" class="space-y-6">
+                <div class="flex justify-between items-center bg-white p-4 rounded-2xl shadow-sm border border-slate-100">
+                    <span class="text-xs font-bold text-slate-500 pl-2">개인정보 보호를 위해 목록은 비밀글로 운영됩니다.</span>
+                    <button type="button" onclick="showWriteForm()" class="bg-brand-blue hover:bg-slate-900 text-white font-black px-5 py-2.5 rounded-xl transition-all duration-200 text-xs flex items-center gap-1.5 shadow-md transform hover:-translate-y-0.5">
+                        <i class="fa-solid fa-pen-to-square"></i> 📝 질문하기 (상담신청)
+                    </button>
+                </div>
+
+                <div class="bg-white rounded-[2rem] shadow-xl border border-slate-100/80 overflow-hidden">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-slate-900 text-white text-xs font-bold tracking-wide">
+                                    <th class="py-4.5 px-6 text-center w-20">상태</th>
+                                    <th class="py-4.5 px-6">상담 제목</th>
+                                    <th class="py-4.5 px-6 w-24 text-center">작성자</th>
+                                    <th class="py-4.5 px-6 w-36 text-center">등록일</th>
+                                </tr>
+                            </thead>
+                            <tbody id="listTableBody" class="divide-y divide-slate-100 text-sm font-medium text-slate-600">
+                                </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
-            
-            <!-- 메인 카드 container -->
-            <div class="bg-white p-8 md:p-10 rounded-[2rem] shadow-xl border border-slate-100/80">
-                
-                <!-- [폼 1] 상담 신청하기 -->
+
+            <div id="counselWriteView" class="bg-white p-8 md:p-10 rounded-[2rem] shadow-xl border border-slate-100/80 hidden">
+                <div class="flex justify-between items-center mb-6 pb-4 border-b border-slate-100">
+                    <h3 class="text-lg font-black text-slate-900 flex items-center gap-2">
+                        <i class="fa-solid fa-paper-plane text-brand-blue text-sm"></i> 상담 신청서 작성
+                    </h3>
+                    <button type="button" onclick="showListView()" class="text-xs font-bold text-slate-400 hover:text-slate-600 flex items-center gap-1">
+                        <i class="fa-solid fa-arrow-left"></i> 목록으로 돌아가기
+                    </button>
+                </div>
+
                 <form id="counselForm" class="space-y-6">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                         <div>
                             <label class="block text-xs font-bold text-slate-700 mb-2 tracking-wide">작성자 성함</label>
                             <input type="text" id="name" placeholder="이름을 입력하세요" required 
-                                   class="w-full px-4 py-3.5 border border-slate-200 rounded-2xl text-sm focus:outline-none focus:border-brand-blue focus:ring-4 focus:ring-brand-blue/5 transition-all placeholder:text-slate-300 font-medium">
+                                   class="w-full px-4 py-3.5 border border-slate-200 rounded-2xl text-sm focus:outline-none focus:border-brand-blue focus:ring-4 focus:ring-brand-blue/5 transition-all font-medium">
                         </div>
                         <div>
                             <label class="block text-xs font-bold text-slate-700 mb-2 tracking-wide">비밀번호 (숫자 4자리)</label>
-                            <input type="password" id="password" inputmode="numeric" pattern="[0-9]*" maxlength="4" placeholder="비밀글 확인용 4자리" required 
-                                   class="w-full px-4 py-3.5 border border-slate-200 rounded-2xl text-sm focus:outline-none focus:border-brand-blue focus:ring-4 focus:ring-brand-blue/5 transition-all placeholder:text-slate-300 font-medium">
+                            <input type="password" id="password" inputmode="numeric" pattern="[0-9]*" maxlength="4" placeholder="비밀글 열람용 4자리" required 
+                                   class="w-full px-4 py-3.5 border border-slate-200 rounded-2xl text-sm focus:outline-none focus:border-brand-blue focus:ring-4 focus:ring-brand-blue/5 transition-all font-medium">
                         </div>
                     </div>
                     <div>
                         <label class="block text-xs font-bold text-slate-700 mb-2 tracking-wide">문의 제목</label>
                         <input type="text" id="title" placeholder="질문의 핵심 제목을 입력해 주세요" required 
-                               class="w-full px-4 py-3.5 border border-slate-200 rounded-2xl text-sm focus:outline-none focus:border-brand-blue focus:ring-4 focus:ring-brand-blue/5 transition-all placeholder:text-slate-300 font-medium">
+                               class="w-full px-4 py-3.5 border border-slate-200 rounded-2xl text-sm focus:outline-none focus:border-brand-blue focus:ring-4 focus:ring-brand-blue/5 transition-all font-medium">
                     </div>
                     <div>
                         <label class="block text-xs font-bold text-slate-700 mb-2 tracking-wide">문의 내용</label>
-                        <textarea id="content" rows="6" placeholder="수강 목적, 희망 시간대 등 상세한 내용을 적어주시면 더 정확한 상담이 가능합니다." required 
-                                  class="w-full px-4 py-3.5 border border-slate-200 rounded-2xl text-sm focus:outline-none focus:border-brand-blue focus:ring-4 focus:ring-brand-blue/5 transition-all resize-none placeholder:text-slate-300 text-slate-600 leading-relaxed font-medium"></textarea>
+                        <textarea id="content" rows="6" placeholder="상세한 내용을 적어주시면 더 정확한 상담이 가능합니다." required 
+                                  class="w-full px-4 py-3.5 border border-slate-200 rounded-2xl text-sm focus:outline-none focus:border-brand-blue focus:ring-4 focus:ring-brand-blue/5 transition-all resize-none text-slate-600 leading-relaxed font-medium"></textarea>
                     </div>
-                    <button type="submit" id="submitBtn" class="w-full bg-slate-900 hover:bg-brand-blue text-white font-black py-4.5 rounded-2xl transition-all duration-300 text-sm shadow-xl flex items-center justify-center gap-2 group transform hover:-translate-y-0.5">
+                    <button type="submit" id="submitBtn" class="w-full bg-slate-900 hover:bg-brand-blue text-white font-black py-4.5 rounded-2xl transition-all duration-300 text-sm shadow-xl flex items-center justify-center gap-2 transform hover:-translate-y-0.5">
                         <span>상담 신청서 제출하기</span>
-                        <i class="fa-solid fa-paper-plane text-xs transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"></i>
+                        <i class="fa-solid fa-paper-plane text-xs"></i>
                     </button>
                 </form>
-
-                <!-- [폼 2] 답변 확인하기 (기본 숨김) -->
-                <form id="checkForm" class="space-y-6 hidden">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                        <div>
-                            <label class="block text-xs font-bold text-slate-700 mb-2 tracking-wide">상담 신청자 성함</label>
-                            <input type="text" id="checkName" placeholder="신청 시 입력한 이름" required 
-                                   class="w-full px-4 py-3.5 border border-slate-200 rounded-2xl text-sm focus:outline-none focus:border-brand-blue focus:ring-4 focus:ring-brand-blue/5 transition-all placeholder:text-slate-300 font-medium">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-bold text-slate-700 mb-2 tracking-wide">비밀번호 (숫자 4자리)</label>
-                            <input type="password" id="checkPassword" inputmode="numeric" pattern="[0-9]*" maxlength="4" placeholder="설정한 비밀번호 4자리" required 
-                                   class="w-full px-4 py-3.5 border border-slate-200 rounded-2xl text-sm focus:outline-none focus:border-brand-blue focus:ring-4 focus:ring-brand-blue/5 transition-all placeholder:text-slate-300 font-medium">
-                        </div>
-                    </div>
-                    <button type="submit" id="checkBtn" class="w-full bg-brand-blue hover:bg-slate-900 text-white font-black py-4.5 rounded-2xl transition-all duration-300 text-sm shadow-xl flex items-center justify-center gap-2 group transform hover:-translate-y-0.5">
-                        <span>내 상담 내역 및 답변 조회하기</span>
-                        <i class="fa-solid fa-magnifying-glass text-xs"></i>
-                    </button>
-
-                    <!-- 결과 리스트 출력 영역 -->
-                    <div id="searchResult" class="mt-8 space-y-4 hidden">
-                        <!-- JS에서 데이터 바인딩 -->
-                    </div>
-                </form>
-
             </div>
+
         </div>
     </section>
 
-    <!-- 인터랙션 및 통신 스크립트 -->
+    <div id="counselModal" class="fixed inset-0 bg-slate-950/40 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
+        <div class="bg-white w-full max-w-xl rounded-[2rem] shadow-2xl border border-slate-100 overflow-hidden transform transition-all p-6 md:p-8 space-y-6 relative">
+            
+            <button type="button" onclick="closeModal()" class="absolute top-6 right-6 text-slate-400 hover:text-slate-600 transition-colors"><i class="fa-solid fa-xmark text-lg"></i></button>
+
+            <div id="modalAuthStep" class="space-y-4 py-4 text-center">
+                <div class="w-12 h-12 bg-slate-100 text-slate-700 rounded-full flex items-center justify-center mx-auto text-lg"><i class="fa-solid fa-lock"></i></div>
+                <div>
+                    <h4 class="font-extrabold text-slate-900 text-base">비밀글 열람 인증</h4>
+                    <p class="text-xs text-slate-400 mt-1">글 작성 시 입력했던 비밀번호 4자리를 입력해 주세요.</p>
+                </div>
+                <div class="max-w-xs mx-auto pt-2 flex gap-2">
+                    <input type="password" id="modalPassword" inputmode="numeric" pattern="[0-9]*" maxlength="4" placeholder="비밀번호 4자리" 
+                           class="w-full px-4 py-3 border border-slate-200 rounded-xl text-center font-bold text-lg focus:outline-none focus:border-brand-blue tracking-widest">
+                    <button type="button" id="modalAuthBtn" onclick="verifyPassword()" class="bg-slate-900 hover:bg-brand-blue text-white font-bold px-5 rounded-xl text-sm transition-all whitespace-nowrap">확인</button>
+                </div>
+            </div>
+
+            <div id="modalContentStep" class="space-y-5 hidden">
+                <div class="space-y-1.5 border-b border-slate-100 pb-3">
+                    <div id="modalDetailTitle" class="font-extrabold text-slate-900 text-lg leading-snug">질문 제목 위치</div>
+                    <div class="text-xs text-slate-400 font-medium">작성자: <span id="modalDetailName" class="text-slate-600 font-bold">홍길동</span></div>
+                </div>
+                <div class="space-y-4">
+                    <div class="text-sm text-slate-600 whitespace-pre-wrap leading-relaxed bg-slate-50 p-4 rounded-2xl border border-slate-100" id="modalDetailContent">질문 본문 내용</div>
+                    <div id="modalReplyBox" class="p-4 bg-brand-blue/5 rounded-2xl border border-brand-blue/10 text-slate-700 text-sm leading-relaxed hidden">
+                        <div class="flex items-center gap-1.5 font-bold text-brand-blue mb-2 text-xs"><i class="fa-solid fa-comment-dots"></i> 원장님 답변</div>
+                        <p id="modalDetailReply" class="whitespace-pre-wrap">답변 내용 위치</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
-    // ⚠️ 중요: 구글 앱스 스크립트 웹 앱 URL 주소를 여기에 넣어주세요!
-    const GAS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbxfLydULhpk4DydoF4yA88SAX5fo3pywM_1lS3bIWAhFb0EjZRkD5HgBJoaesk-QZWhNw/exec'; 
+    // ⚠️ 중요: 새로 배포한 웹 앱 주소를 여기에 넣어주세요!
+    const GAS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbx7GEFS8cR655Mrx5cKtQq4kydlE0Zb2Ot6zg8y_eo1PvwDIbuqq4qhy9bAM8I9gSOvBw/exec'; 
+    let currentTargetId = null; // 현재 인증 대기 중인 글 ID 저장용
 
-    // 탭 전환 함수
-    function switchTab(type) {
-        const tabSubmitBtn = document.getElementById('tabSubmitBtn');
-        const tabCheckBtn = document.getElementById('tabCheckBtn');
-        const counselForm = document.getElementById('counselForm');
-        const checkForm = document.getElementById('checkForm');
+    // 페이지 로드 시 목록 자동 호출
+    document.addEventListener("DOMContentLoaded", fetchCounselList);
 
-        if (type === 'submit') {
-            tabSubmitBtn.className = "flex-1 py-3 text-sm font-bold rounded-xl transition-all duration-200 bg-white text-slate-900 shadow-sm";
-            tabCheckBtn.className = "flex-1 py-3 text-sm font-bold rounded-xl transition-all duration-200 text-slate-500 hover:text-slate-800";
-            counselForm.classList.remove('hidden');
-            checkForm.classList.add('hidden');
-        } else {
-            tabCheckBtn.className = "flex-1 py-3 text-sm font-bold rounded-xl transition-all duration-200 bg-white text-slate-900 shadow-sm";
-            tabSubmitBtn.className = "flex-1 py-3 text-sm font-bold rounded-xl transition-all duration-200 text-slate-500 hover:text-slate-800";
-            checkForm.classList.remove('hidden');
-            counselForm.classList.add('hidden');
+    // 뷰 전환 함수
+    function showWriteForm() {
+        document.getElementById('counselListView').classList.add('hidden');
+        document.getElementById('counselWriteView').classList.remove('hidden');
+    }
+    function showListView() {
+        document.getElementById('counselWriteView').classList.add('hidden');
+        document.getElementById('counselListView').classList.remove('hidden');
+        fetchCounselList();
+    }
+
+    // ① 목록 원격 호출 함수
+    async function fetchCounselList() {
+        const tbody = document.getElementById('listTableBody');
+        tbody.innerHTML = `<tr><td colspan="4" class="text-center py-12 text-xs text-slate-400"><i class="fa-solid fa-spinner animate-spin mr-1"></i> 상담 글 목록을 동기화 중입니다...</td></tr>`;
+        
+        try {
+            const response = await fetch(GAS_WEB_APP_URL, { method: 'POST', body: JSON.stringify({ action: 'list' }) });
+            const result = await response.json();
+            
+            if (result.result === 'success') {
+                if (result.data.length === 0) {
+                    tbody.innerHTML = `<tr><td colspan="4" class="text-center py-12 text-xs text-slate-400">등록된 상담 내역이 없습니다. 첫 번째 질문을 남겨보세요!</td></tr>`;
+                    return;
+                }
+                
+                tbody.innerHTML = '';
+                result.data.forEach(item => {
+                    const isDone = item.status === '답변완료';
+                    const badge = isDone 
+                        ? `<span class="px-2 py-0.5 text-[10px] font-black bg-emerald-50 text-emerald-600 rounded border border-emerald-100">답변완료</span>`
+                        : `<span class="px-2 py-0.5 text-[10px] font-black bg-amber-50 text-amber-600 rounded border border-amber-100">접수대기</span>`;
+                    
+                    tbody.innerHTML += `
+                        <tr onclick="openAuthModal('${item.id}')" class="hover:bg-slate-50/80 cursor-pointer transition-colors group">
+                            <td class="py-4 px-6 text-center">${badge}</td>
+                            <td class="py-4 px-6 font-bold text-slate-800 group-hover:text-brand-blue transition-colors flex items-center gap-1.5">
+                                <i class="fa-solid fa-lock text-slate-300 text-xs"></i> ${item.title}
+                            </td>
+                            <td class="py-4 px-6 text-center text-xs text-slate-500 font-semibold">${item.name}</td>
+                            <td class="py-4 px-6 text-center text-xs text-slate-400">${item.date.split(' ')[0]}</td>
+                        </tr>
+                    `;
+                });
+            }
+        } catch (error) {
+            tbody.innerHTML = `<tr><td colspan="4" class="text-center py-12 text-xs text-red-400">목록을 불러오지 못했습니다. 구글 서버 배포 설정을 확인해 주세요.</td></tr>`;
         }
     }
 
-    // ① 상담 신청 폼 전송 이벤트
+    // ② 상담 신청서 전송
     document.getElementById('counselForm').addEventListener('submit', async (e) => {
         e.preventDefault();
         const submitBtn = document.getElementById('submitBtn');
         submitBtn.disabled = true;
-        submitBtn.innerHTML = `<span>전송 중...</span> <i class="fa-solid fa-spinner animate-spin text-xs"></i>`;
-        
+        submitBtn.innerHTML = `<span>제출 중...</span> <i class="fa-solid fa-spinner animate-spin text-xs"></i>`;
+
         const formData = {
             action: 'submit',
             name: document.getElementById('name').value,
@@ -380,87 +443,81 @@
             const response = await fetch(GAS_WEB_APP_URL, { method: 'POST', body: JSON.stringify(formData) });
             const result = await response.json();
             if (result.result === 'success') {
-                alert('상담 신청이 완료되었습니다!\n[나의 답변 확인하기] 탭에서 실시간으로 결과를 확인하실 수 있습니다.');
+                alert('상담 신청이 완벽히 접수되었습니다!');
                 document.getElementById('counselForm').reset();
-                switchTab('check'); // 작성 후 확인 탭으로 자동 이동
+                showListView();
             } else {
-                alert('접수 중 오류가 발생했습니다. 학원으로 연락해주시기 바랍니다.');
+                alert('오류가 발생했습니다. 학원으로 문의바랍니다.');
             }
         } catch (error) {
-            alert('서버 연결에 실패했습니다. 배포 설정을 확인해 주세요.');
+            alert('서버 연결 실패. GAS 배포 설정을 다시 확인해 주세요.');
         } finally {
             submitBtn.disabled = false;
             submitBtn.innerHTML = `<span>상담 신청서 제출하기</span> <i class="fa-solid fa-paper-plane text-xs"></i>`;
         }
     });
 
-    // ② 상담 내역 및 답변 조회 이벤트
-    document.getElementById('checkForm').addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const checkBtn = document.getElementById('checkBtn');
-        const searchResult = document.getElementById('searchResult');
-        
-        checkBtn.disabled = true;
-        checkBtn.innerHTML = `<span>조회 중...</span> <i class="fa-solid fa-spinner animate-spin text-xs"></i>`;
-        searchResult.classList.add('hidden');
-        searchResult.innerHTML = '';
+    // ③ 모달 핸들링 기믹
+    function openAuthModal(id) {
+        currentTargetId = id;
+        document.getElementById('modalAuthStep').classList.remove('hidden');
+        document.getElementById('modalContentStep').classList.add('hidden');
+        document.getElementById('modalPassword').value = '';
+        document.getElementById('counselModal').classList.remove('hidden');
+    }
+    function closeModal() {
+        document.getElementById('counselModal').classList.add('hidden');
+        currentTargetId = null;
+    }
 
-        const formData = {
-            action: 'check',
-            name: document.getElementById('checkName').value,
-            password: document.getElementById('checkPassword').value
-        };
+    // ④ 비밀번호 통신 검증 및 상세 바인딩
+    async function verifyPassword() {
+        const passwordInput = document.getElementById('modalPassword');
+        const authBtn = document.getElementById('modalAuthBtn');
+        
+        if(!passwordInput.value) { alert('비밀번호를 입력하세요.'); return; }
+        
+        authBtn.disabled = true;
+        authBtn.innerText = '검증중';
 
         try {
-            const response = await fetch(GAS_WEB_APP_URL, { method: 'POST', body: JSON.stringify(formData) });
+            const response = await fetch(GAS_WEB_APP_URL, {
+                method: 'POST',
+                body: JSON.stringify({ action: 'view', id: currentTargetId, password: passwordInput.value })
+            });
             const result = await response.json();
-            
+
             if (result.result === 'success') {
-                searchResult.classList.remove('hidden');
+                // 검증 완료 시 데이터 바인딩 및 화면 전환
+                document.getElementById('modalDetailTitle').innerText = result.data.title;
+                document.getElementById('modalDetailName').innerText = result.data.name;
+                document.getElementById('modalDetailContent').innerText = result.data.content;
                 
-                if (result.data.length === 0) {
-                    searchResult.innerHTML = `<div class="text-center py-8 text-sm text-slate-400 font-medium">일치하는 상담 신청 내역이 없습니다.<br>이름과 비밀번호를 다시 확인해 주세요.</div>`;
-                    return;
+                const replyBox = document.getElementById('modalReplyBox');
+                if(result.data.reply) {
+                    document.getElementById('modalDetailReply').innerText = result.data.reply;
+                    replyBox.classList.remove('hidden');
+                } else {
+                    replyBox.classList.add('hidden');
                 }
 
-                // 데이터가 있을 경우 결과 루프 빌딩
-                result.data.forEach(item => {
-                    const statusBadge = item.status === '답변완료' 
-                        ? `<span class="px-2.5 py-1 text-[11px] font-bold bg-emerald-50 text-emerald-600 rounded-md border border-emerald-100">답변완료</span>`
-                        : `<span class="px-2.5 py-1 text-[11px] font-bold bg-amber-50 text-amber-600 rounded-md border border-amber-100">접수대기</span>`;
-                    
-                    const replyBox = item.reply 
-                        ? `<div class="mt-4 p-4 bg-slate-50 rounded-xl border border-slate-100/70 text-slate-700 text-sm leading-relaxed">
-                             <div class="flex items-center gap-1.5 font-bold text-brand-blue mb-1.5 text-xs"><i class="fa-solid fa-comment-dots text-[11px]"></i> 학원 답변</div>
-                             ${item.reply.replace(/\n/g, '<br>')}
-                           </div>`
-                        : `<div class="mt-4 p-4 bg-slate-50/50 rounded-xl border border-dashed border-slate-200 text-slate-400 text-xs tracking-wide flex items-center gap-1.5">
-                             <i class="fa-solid fa-hourglass-half text-[11px]"></i> 원장님이 상담 내용을 확인 중입니다. 조금만 기다려주세요!
-                           </div>`;
-
-                    searchResult.innerHTML += `
-                        <div class="p-5 border border-slate-100 rounded-2xl bg-white shadow-sm space-y-2">
-                            <div class="flex justify-between items-start gap-4">
-                                <h4 class="font-extrabold text-slate-900 text-base leading-snug">${item.title}</h4>
-                                ${statusBadge}
-                            </div>
-                            <p class="text-xs text-slate-400 font-medium">${item.date}</p>
-                            <p class="text-sm text-slate-500 whitespace-pre-wrap pt-1">${item.content}</p>
-                            ${replyBox}
-                        </div>
-                        <hr class="border-slate-100 my-4 last:hidden">
-                    `;
-                });
+                document.getElementById('modalAuthStep').classList.add('hidden');
+                document.getElementById('modalContentStep').classList.remove('hidden');
+            } else if (result.result === 'wrong_password') {
+                alert('비밀번호가 불일치합니다. 다시 시도해 주세요.');
+                passwordInput.value = '';
+                passwordInput.focus();
             } else {
-                alert('조회 중 시스템 에러가 발생했습니다.');
+                alert('존재하지 않거나 삭제된 게시글입니다.');
+                closeModal();
             }
         } catch (error) {
-            alert('서버 응답을 받지 못했습니다. 네트워크 상태나 웹 앱 주소를 확인해 주세요.');
+            alert('인증 처리 중 통신 에러가 발생했습니다.');
         } finally {
-            checkBtn.disabled = false;
-            checkBtn.innerHTML = `<span>내 상담 내역 및 답변 조회하기</span> <i class="fa-solid fa-magnifying-glass text-xs"></i>`;
+            authBtn.disabled = false;
+            authBtn.innerText = '확인';
         }
-    });
+    }
     </script>
     <!-- ========================================================== -->
     <!-- 🛑 여기까지만 붙여넣으시면 됩니다. -->
