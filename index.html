@@ -250,22 +250,34 @@
     </section>
 </section> <!-- 👈 기존 공지사항 섹션이 끝나는 닫는 태그 바로 아래에 공간을 만드세요 -->
 
-    <!-- ========================================================== -->
-    <!-- ✨ [신설] 온라인 상담 신청 섹션 (여기서부터 복사해서 붙여넣기) -->
+<!-- ========================================================== -->
+    <!-- ✨ [업그레이드] 온라인 상담 및 답변 조회 섹션 -->
     <!-- ========================================================== -->
     <section id="counsel" class="bg-slate-50 py-24 border-b border-slate-100">
         <div class="max-w-3xl mx-auto px-6">
             
-            <!-- 섹션 헤더 (공지사항 스타일과 통일) -->
-            <div class="text-center space-y-3 mb-16">
+            <!-- 섹션 헤더 -->
+            <div class="text-center space-y-3 mb-12">
                 <span class="text-xs font-bold text-brand-blue tracking-widest uppercase">ONLINE COUNSEL</span>
                 <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight">온라인 상담 문의</h2>
-                <p class="text-slate-500 text-sm">교육과정에 대해 궁금한 점을 남겨주시면 원장님이 직접 답변해 드립니다.</p>
+                <p class="text-slate-500 text-sm">교육과정 문의를 남기시거나, 작성하신 비밀글의 답변을 확인하실 수 있습니다.</p>
                 <div class="w-12 h-1 bg-brand-blue mx-auto rounded-full mt-4"></div>
             </div>
+
+            <!-- 탭 메뉴 버튼 -->
+            <div class="flex justify-center gap-2 mb-8 bg-slate-200/60 p-1.5 rounded-2xl max-w-md mx-auto">
+                <button type="button" id="tabSubmitBtn" onclick="switchTab('submit')" class="flex-1 py-3 text-sm font-bold rounded-xl transition-all duration-200 bg-white text-slate-900 shadow-sm">
+                    상담 신청하기
+                </button>
+                <button type="button" id="tabCheckBtn" onclick="switchTab('check')" class="flex-1 py-3 text-sm font-bold rounded-xl transition-all duration-200 text-slate-500 hover:text-slate-800">
+                    나의 답변 확인하기
+                </button>
+            </div>
             
-            <!-- 상담 폼 카드 -->
+            <!-- 메인 카드 container -->
             <div class="bg-white p-8 md:p-10 rounded-[2rem] shadow-xl border border-slate-100/80">
+                
+                <!-- [폼 1] 상담 신청하기 -->
                 <form id="counselForm" class="space-y-6">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                         <div>
@@ -279,42 +291,85 @@
                                    class="w-full px-4 py-3.5 border border-slate-200 rounded-2xl text-sm focus:outline-none focus:border-brand-blue focus:ring-4 focus:ring-brand-blue/5 transition-all placeholder:text-slate-300 font-medium">
                         </div>
                     </div>
-                    
                     <div>
                         <label class="block text-xs font-bold text-slate-700 mb-2 tracking-wide">문의 제목</label>
                         <input type="text" id="title" placeholder="질문의 핵심 제목을 입력해 주세요" required 
                                class="w-full px-4 py-3.5 border border-slate-200 rounded-2xl text-sm focus:outline-none focus:border-brand-blue focus:ring-4 focus:ring-brand-blue/5 transition-all placeholder:text-slate-300 font-medium">
                     </div>
-                    
                     <div>
                         <label class="block text-xs font-bold text-slate-700 mb-2 tracking-wide">문의 내용</label>
                         <textarea id="content" rows="6" placeholder="수강 목적, 희망 시간대 등 상세한 내용을 적어주시면 더 정확한 상담이 가능합니다." required 
                                   class="w-full px-4 py-3.5 border border-slate-200 rounded-2xl text-sm focus:outline-none focus:border-brand-blue focus:ring-4 focus:ring-brand-blue/5 transition-all resize-none placeholder:text-slate-300 text-slate-600 leading-relaxed font-medium"></textarea>
                     </div>
-
-                    <button type="submit" id="submitBtn" class="w-full bg-slate-900 hover:bg-brand-blue text-white font-black py-4.5 rounded-2xl transition-all duration-300 text-sm shadow-xl shadow-slate-900/5 flex items-center justify-center gap-2 group transform hover:-translate-y-0.5">
+                    <button type="submit" id="submitBtn" class="w-full bg-slate-900 hover:bg-brand-blue text-white font-black py-4.5 rounded-2xl transition-all duration-300 text-sm shadow-xl flex items-center justify-center gap-2 group transform hover:-translate-y-0.5">
                         <span>상담 신청서 제출하기</span>
                         <i class="fa-solid fa-paper-plane text-xs transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"></i>
                     </button>
                 </form>
-            </div>
 
+                <!-- [폼 2] 답변 확인하기 (기본 숨김) -->
+                <form id="checkForm" class="space-y-6 hidden">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-2 tracking-wide">상담 신청자 성함</label>
+                            <input type="text" id="checkName" placeholder="신청 시 입력한 이름" required 
+                                   class="w-full px-4 py-3.5 border border-slate-200 rounded-2xl text-sm focus:outline-none focus:border-brand-blue focus:ring-4 focus:ring-brand-blue/5 transition-all placeholder:text-slate-300 font-medium">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-2 tracking-wide">비밀번호 (숫자 4자리)</label>
+                            <input type="password" id="checkPassword" inputmode="numeric" pattern="[0-9]*" maxlength="4" placeholder="설정한 비밀번호 4자리" required 
+                                   class="w-full px-4 py-3.5 border border-slate-200 rounded-2xl text-sm focus:outline-none focus:border-brand-blue focus:ring-4 focus:ring-brand-blue/5 transition-all placeholder:text-slate-300 font-medium">
+                        </div>
+                    </div>
+                    <button type="submit" id="checkBtn" class="w-full bg-brand-blue hover:bg-slate-900 text-white font-black py-4.5 rounded-2xl transition-all duration-300 text-sm shadow-xl flex items-center justify-center gap-2 group transform hover:-translate-y-0.5">
+                        <span>내 상담 내역 및 답변 조회하기</span>
+                        <i class="fa-solid fa-magnifying-glass text-xs"></i>
+                    </button>
+
+                    <!-- 결과 리스트 출력 영역 -->
+                    <div id="searchResult" class="mt-8 space-y-4 hidden">
+                        <!-- JS에서 데이터 바인딩 -->
+                    </div>
+                </form>
+
+            </div>
         </div>
     </section>
 
-    <!-- GAS 데이터 전송 스크립트 -->
+    <!-- 인터랙션 및 통신 스크립트 -->
     <script>
+    // ⚠️ 중요: 구글 앱스 스크립트 웹 앱 URL 주소를 여기에 넣어주세요!
+    const GAS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbxfLydULhpk4DydoF4yA88SAX5fo3pywM_1lS3bIWAhFb0EjZRkD5HgBJoaesk-QZWhNw/exec'; 
+
+    // 탭 전환 함수
+    function switchTab(type) {
+        const tabSubmitBtn = document.getElementById('tabSubmitBtn');
+        const tabCheckBtn = document.getElementById('tabCheckBtn');
+        const counselForm = document.getElementById('counselForm');
+        const checkForm = document.getElementById('checkForm');
+
+        if (type === 'submit') {
+            tabSubmitBtn.className = "flex-1 py-3 text-sm font-bold rounded-xl transition-all duration-200 bg-white text-slate-900 shadow-sm";
+            tabCheckBtn.className = "flex-1 py-3 text-sm font-bold rounded-xl transition-all duration-200 text-slate-500 hover:text-slate-800";
+            counselForm.classList.remove('hidden');
+            checkForm.classList.add('hidden');
+        } else {
+            tabCheckBtn.className = "flex-1 py-3 text-sm font-bold rounded-xl transition-all duration-200 bg-white text-slate-900 shadow-sm";
+            tabSubmitBtn.className = "flex-1 py-3 text-sm font-bold rounded-xl transition-all duration-200 text-slate-500 hover:text-slate-800";
+            checkForm.classList.remove('hidden');
+            counselForm.classList.add('hidden');
+        }
+    }
+
+    // ① 상담 신청 폼 전송 이벤트
     document.getElementById('counselForm').addEventListener('submit', async (e) => {
         e.preventDefault();
-        
         const submitBtn = document.getElementById('submitBtn');
-        // ⚠️ 주의: 구글 앱스 스크립트 배포 후 발급받은 실제 웹 앱 URL 주소로 꼭 변경해 주세요!
-        const GAS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycby1Q7RKdbc5KBLBqnJuVWXIJb_n-3FmBCET6O6QHhLdZDLIsrSiaDGLDrJLKwe2ik07ZQ/exec'; 
-        
         submitBtn.disabled = true;
         submitBtn.innerHTML = `<span>전송 중...</span> <i class="fa-solid fa-spinner animate-spin text-xs"></i>`;
         
         const formData = {
+            action: 'submit',
             name: document.getElementById('name').value,
             password: document.getElementById('password').value,
             title: document.getElementById('title').value,
@@ -322,26 +377,88 @@
         };
 
         try {
-            const response = await fetch(GAS_WEB_APP_URL, {
-                method: 'POST',
-                body: JSON.stringify(formData)
-            });
-
+            const response = await fetch(GAS_WEB_APP_URL, { method: 'POST', body: JSON.stringify(formData) });
             const result = await response.json();
-
             if (result.result === 'success') {
-                alert('상담 신청이 성공적으로 접수되었습니다!\n원장님이 확인 후 성심성의껏 답변드리겠습니다.');
+                alert('상담 신청이 완료되었습니다!\n[나의 답변 확인하기] 탭에서 실시간으로 결과를 확인하실 수 있습니다.');
                 document.getElementById('counselForm').reset();
+                switchTab('check'); // 작성 후 확인 탭으로 자동 이동
             } else {
-                alert('접수 중 오류가 발생했습니다. 학원 대표번호로 연락해 주시면 바로 도와드리겠습니다.');
-                console.error(result.message);
+                alert('접수 중 오류가 발생했습니다. 학원으로 연락해주시기 바랍니다.');
             }
         } catch (error) {
-            console.error('Network Error:', error);
-            alert('서버 연결에 실패했습니다. 인터넷 연결을 확인하거나 잠시 후 다시 시도해 주세요.');
+            alert('서버 연결에 실패했습니다. 배포 설정을 확인해 주세요.');
         } finally {
             submitBtn.disabled = false;
             submitBtn.innerHTML = `<span>상담 신청서 제출하기</span> <i class="fa-solid fa-paper-plane text-xs"></i>`;
+        }
+    });
+
+    // ② 상담 내역 및 답변 조회 이벤트
+    document.getElementById('checkForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const checkBtn = document.getElementById('checkBtn');
+        const searchResult = document.getElementById('searchResult');
+        
+        checkBtn.disabled = true;
+        checkBtn.innerHTML = `<span>조회 중...</span> <i class="fa-solid fa-spinner animate-spin text-xs"></i>`;
+        searchResult.classList.add('hidden');
+        searchResult.innerHTML = '';
+
+        const formData = {
+            action: 'check',
+            name: document.getElementById('checkName').value,
+            password: document.getElementById('checkPassword').value
+        };
+
+        try {
+            const response = await fetch(GAS_WEB_APP_URL, { method: 'POST', body: JSON.stringify(formData) });
+            const result = await response.json();
+            
+            if (result.result === 'success') {
+                searchResult.classList.remove('hidden');
+                
+                if (result.data.length === 0) {
+                    searchResult.innerHTML = `<div class="text-center py-8 text-sm text-slate-400 font-medium">일치하는 상담 신청 내역이 없습니다.<br>이름과 비밀번호를 다시 확인해 주세요.</div>`;
+                    return;
+                }
+
+                // 데이터가 있을 경우 결과 루프 빌딩
+                result.data.forEach(item => {
+                    const statusBadge = item.status === '답변완료' 
+                        ? `<span class="px-2.5 py-1 text-[11px] font-bold bg-emerald-50 text-emerald-600 rounded-md border border-emerald-100">답변완료</span>`
+                        : `<span class="px-2.5 py-1 text-[11px] font-bold bg-amber-50 text-amber-600 rounded-md border border-amber-100">접수대기</span>`;
+                    
+                    const replyBox = item.reply 
+                        ? `<div class="mt-4 p-4 bg-slate-50 rounded-xl border border-slate-100/70 text-slate-700 text-sm leading-relaxed">
+                             <div class="flex items-center gap-1.5 font-bold text-brand-blue mb-1.5 text-xs"><i class="fa-solid fa-comment-dots text-[11px]"></i> 학원 답변</div>
+                             ${item.reply.replace(/\n/g, '<br>')}
+                           </div>`
+                        : `<div class="mt-4 p-4 bg-slate-50/50 rounded-xl border border-dashed border-slate-200 text-slate-400 text-xs tracking-wide flex items-center gap-1.5">
+                             <i class="fa-solid fa-hourglass-half text-[11px]"></i> 원장님이 상담 내용을 확인 중입니다. 조금만 기다려주세요!
+                           </div>`;
+
+                    searchResult.innerHTML += `
+                        <div class="p-5 border border-slate-100 rounded-2xl bg-white shadow-sm space-y-2">
+                            <div class="flex justify-between items-start gap-4">
+                                <h4 class="font-extrabold text-slate-900 text-base leading-snug">${item.title}</h4>
+                                ${statusBadge}
+                            </div>
+                            <p class="text-xs text-slate-400 font-medium">${item.date}</p>
+                            <p class="text-sm text-slate-500 whitespace-pre-wrap pt-1">${item.content}</p>
+                            ${replyBox}
+                        </div>
+                        <hr class="border-slate-100 my-4 last:hidden">
+                    `;
+                });
+            } else {
+                alert('조회 중 시스템 에러가 발생했습니다.');
+            }
+        } catch (error) {
+            alert('서버 응답을 받지 못했습니다. 네트워크 상태나 웹 앱 주소를 확인해 주세요.');
+        } finally {
+            checkBtn.disabled = false;
+            checkBtn.innerHTML = `<span>내 상담 내역 및 답변 조회하기</span> <i class="fa-solid fa-magnifying-glass text-xs"></i>`;
         }
     });
     </script>
