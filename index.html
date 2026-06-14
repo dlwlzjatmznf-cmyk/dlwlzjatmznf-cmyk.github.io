@@ -4,14 +4,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>이지컴스쿨학원</title>
-    <!-- 구글 폰트 적용 -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome 아이콘 라이브러리 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- ★ 외부 설정 스위치 파일 로드 -->
     <script src="config.js"></script>
     
     <script>
@@ -42,7 +38,6 @@
 </head>
 <body class="bg-slate-50 text-slate-800 antialiased font-sans">
 
-    <!-- 1. 헤더 (Header) -->
     <header class="bg-white/95 backdrop-blur-md border-b border-slate-100 sticky top-0 z-50 transition-all">
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
             <a href="#" class="flex items-center">
@@ -66,11 +61,9 @@
         </div>
     </header>
 
-    <!-- 2. 메인 비주얼 배너 (Hero Section) -->
     <section class="relative bg-gradient-to-b from-[#0F1D3D] via-[#09132A] to-[#050B1A] text-white overflow-hidden py-24 md:py-32">
         <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
             
-            <!-- 왼쪽 메인 텍스트 영역 -->
             <div id="hero-text" class="lg:col-span-12 space-y-6 transition-all duration-500">
                 <div class="inline-flex items-center gap-2 bg-brand-blue/10 text-brand-accent border border-brand-accent/20 px-4 py-1.5 rounded-full text-xs font-semibold">
                     <span class="w-1.5 h-1.5 rounded-full bg-brand-accent animate-ping"></span>
@@ -98,7 +91,6 @@
                 </div>
             </div>
 
-            <!-- 오른쪽 교육 수요조사 화이트 카드 -->
             <div id="hero-card-survey" class="lg:col-span-5 hidden transition-all duration-500">
                 <div class="bg-white text-slate-800 p-8 rounded-[2rem] shadow-2xl border border-slate-100 space-y-6">
                     <div class="flex items-start gap-4">
@@ -106,7 +98,7 @@
                             <i class="fa-solid fa-clipboard-list text-2xl"></i>
                         </div>
                         <div>
-                            <h3 class="font-bold text-xl text-slate-900">教育 수요조사</h3>
+                            <h3 class="font-bold text-xl text-slate-900">교육 수요조사</h3>
                             <p class="text-xs text-slate-400 mt-0.5">더 가치 있는 배움을 제안해 주세요</p>
                         </div>
                     </div>
@@ -125,7 +117,6 @@
         </div>
     </section>
 
-    <!-- 3. 학원 소개 섹션 (ABOUT EZCOM) -->
     <section id="about" class="py-24 bg-white border-b border-slate-100">
         <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
             <div class="lg:col-span-6 relative" id="classroom-container">
@@ -165,7 +156,6 @@
         </div>
     </section>
 
-    <!-- 4. 주요 훈련과정 섹션 -->
     <section id="courses" class="py-24 max-w-7xl mx-auto px-6">
         <div class="text-center space-y-3 mb-16">
             <span class="text-xs font-bold text-brand-blue tracking-widest uppercase">OUR COURSES</span>
@@ -175,7 +165,6 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <!-- 카드 1 -->
             <div class="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-slate-100 flex flex-col h-full group">
                 <div class="h-44 overflow-hidden relative bg-slate-100">
                     <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=600" alt="재무빅데이터" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="handleCourseError(this, 'data')">
@@ -192,7 +181,6 @@
                     </div>
                 </div>
             </div>
-            <!-- 카드 2 -->
             <div class="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-slate-100 flex flex-col h-full group">
                 <div class="h-44 overflow-hidden relative bg-slate-100">
                     <img src="https://images.unsplash.com/photo-1677442136019-21780efad99a?auto=format&fit=crop&q=80&w=600" alt="생성형 AI" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="handleCourseError(this, 'ai')">
@@ -209,7 +197,6 @@
                     </div>
                 </div>
             </div>
-            <!-- 카드 3 -->
             <div class="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-slate-100 flex flex-col h-full group">
                 <div class="h-44 overflow-hidden relative bg-slate-100">
                     <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=600" alt="컴퓨터활용능력" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="handleCourseError(this, 'com')">
@@ -226,7 +213,6 @@
                     </div>
                 </div>
             </div>
-            <!-- 카드 4 -->
             <div class="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-slate-100 flex flex-col h-full group">
                 <div class="h-44 overflow-hidden relative bg-slate-100">
                     <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&q=80&w=600" alt="전산회계" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="handleCourseError(this, 'accounting')">
@@ -246,8 +232,7 @@
         </div>
     </section>
 
-    <!-- 5. 공지사항 섹션 -->
-<section id="notice" class="bg-white py-24 border-t border-b border-slate-100">
+    <section id="notice" class="bg-white py-24 border-t border-b border-slate-100">
         <div class="max-w-4xl mx-auto px-6">
             <div class="text-center space-y-3 mb-16">
                 <span class="text-xs font-bold text-brand-blue tracking-widest uppercase">NOTICE</span>
@@ -260,7 +245,7 @@
             </div>
         </div>
     </section>
-    <!-- 6. 푸터 -->
+
     <footer class="bg-[#0B1224] text-slate-400 py-16">
         <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-8">
             <div class="text-center md:text-left space-y-3">
@@ -279,7 +264,6 @@
         </div>
     </footer>
 
-    <!-- 7. 수요조사 팝업 모달 레이아웃 -->
     <div id="surveyModal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/60 backdrop-blur-sm p-4 transition-all duration-300">
         <div class="bg-white w-full max-w-4xl h-[85vh] rounded-[2rem] overflow-hidden relative flex flex-col shadow-2xl border border-slate-100">
             <div class="absolute top-4 right-4 z-50">
@@ -291,7 +275,29 @@
         </div>
     </div>
 
-    <!-- 이미지 로딩 및 제어 스크립트 -->
+    <div id="noticeModal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/60 backdrop-blur-sm p-4 transition-all duration-300">
+        <div class="bg-white w-full max-w-2xl rounded-[2rem] overflow-hidden relative flex flex-col shadow-2xl border border-slate-100 max-h-[80vh]">
+            <div class="p-6 border-b border-slate-100 flex items-center justify-between bg-slate-50">
+                <div class="flex items-center gap-3">
+                    <span id="modalNoticeType" class="text-[10px] font-extrabold px-2.5 py-1 rounded-md"></span>
+                    <span id="modalNoticeDate" class="text-slate-400 text-xs flex items-center gap-1"></span>
+                </div>
+                <button onclick="closeNoticeModal()" class="text-slate-400 hover:text-slate-600 transition-colors">
+                    <i class="fa-solid fa-xmark text-xl"></i>
+                </button>
+            </div>
+            <div class="p-8 overflow-y-auto space-y-4 flex-grow">
+                <h3 id="modalNoticeTitle" class="font-extrabold text-2xl text-slate-900 leading-tight"></h3>
+                <div id="modalNoticeContent" class="text-slate-600 leading-relaxed text-base whitespace-pre-wrap pt-5 border-t border-slate-100"></div>
+            </div>
+            <div class="p-4 bg-slate-50 border-t border-slate-100 flex justify-end">
+                <button onclick="closeNoticeModal()" class="bg-brand-blue hover:bg-brand-hover text-white font-bold px-6 py-2 rounded-xl text-sm transition-all shadow-md">
+                    확인
+                </button>
+            </div>
+        </div>
+    </div>
+
     <script>
         function handleLogoError(img) {
             const parent = img.parentElement;
@@ -309,6 +315,9 @@
             else if (type === 'accounting') { icon = 'fa-calculator'; gradient = 'from-amber-500/20 to-amber-900/40'; color = 'text-amber-400'; }
             parent.innerHTML = `<div class="w-full h-full bg-gradient-to-br ${gradient} flex flex-col items-center justify-center text-center p-6"><i class="fa-solid ${icon} text-4xl ${color} mb-3"></i></div>`;
         }
+
+        // 글로벌 공지사항 메모리 데이터 보관소
+        window.noticeDataMemory = [];
 
         // ==========================================
         // 지능형 마스터 스위치 로직 연동
@@ -352,7 +361,7 @@
             loadNotices();
         });
 
-        // ★ 구글 시트 공지사항 실시간 연동 핵심 엔진 함수
+        // ★ 구글 시트 공지사항 실시간 연동 및 팝업 매핑 엔진 함수
         async function loadNotices() {
             const sheetId = (typeof NOTICE_SHEET_ID !== 'undefined') ? NOTICE_SHEET_ID : '';
             const container = document.getElementById('notice-list');
@@ -370,28 +379,34 @@
                 const rows = data.table.rows;
 
                 let htmlString = '';
+                window.noticeDataMemory = []; // 초기화
 
                 // 1행(헤더)을 제외하고 2행(index 1)부터 데이터를 읽어옴
                 for (let i = 1; i < rows.length; i++) {
                     const row = rows[i];
                     if (!row.c || !row.c[1]) continue; // 제목이 없으면 건너뜀
 
-                    const type = row.c[0] ? row.c[0].v : '공지'; // 구분 (모집/공지)
-                    const title = row.c[1] ? row.c[1].v : '';    // 제목
-                    const date = row.c[2] ? (row.c[2].f || row.c[2].v) : ''; // 날짜
+                    const type = row.c[0] ? row.c[0].v : '공지'; // A열: 구분 (모집/공지)
+                    const title = row.c[1] ? row.c[1].v : '';    // B열: 제목
+                    const date = row.c[2] ? (row.c[2].f || row.c[2].v) : ''; // C열: 날짜
+                    const content = row.c[3] ? row.c[3].v : '상세 내용이 없습니다.'; // D열: 상세내용
+
+                    // 배열 구조로 안전하게 데이터를 보관하여 인라인 문자열 깨짐 원천 방지
+                    window.noticeDataMemory.push({ type, title, date, content });
+                    const memoryIndex = window.noticeDataMemory.length - 1;
 
                     // 구분에 따른 디자인 배지 클래스 분기 처리
                     const badgeClass = (type === '모집') 
                         ? 'bg-brand-blue/10 text-brand-blue' 
                         : 'bg-slate-100 text-slate-500';
 
-                    // 원장님이 기존에 설계한 명품 UI 템플릿 그대로 동적 복사 배치
+                    // 원장님이 설계하신 명품 UI 스타일 그대로 유지 + 클릭 이벤트(cursor-pointer) 추가
                     htmlString += `
-                        <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4 hover:border-brand-blue transition-colors duration-200">
+                        <div onclick="showNoticeDetail(${memoryIndex})" class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4 hover:border-brand-blue transition-colors duration-200 cursor-pointer group">
                             <div class="space-y-2">
                                 <div class="flex items-center gap-3">
                                     <span class="${badgeClass} text-[10px] font-extrabold px-2.5 py-1 rounded-md">${type}</span>
-                                    <h4 class="font-bold text-slate-900 text-base">${title}</h4>
+                                    <h4 class="font-bold text-slate-900 text-base group-hover:text-brand-blue transition-colors">${title}</h4>
                                 </div>
                             </div>
                             <div class="flex items-center text-slate-400 text-xs gap-1 whitespace-nowrap self-end md:self-center">
@@ -406,12 +421,44 @@
                 console.error('공지사항 로드 중 오류 발생:', error);
                 container.innerHTML = '<p class="text-center text-rose-500 text-sm py-4">공지사항을 안전하게 불러오지 못했습니다.</p>';
             }
-        } // ◀ 불필요했던 }); 코드를 제거하여 정상 차단 완료했습니다.
+        }
+
+        // 공지사항 인덱스를 받아서 모달 창을 띄워주는 함수
+        function showNoticeDetail(index) {
+            const data = window.noticeDataMemory[index];
+            if (!data) return;
+
+            const modal = document.getElementById('noticeModal');
+            const mType = document.getElementById('modalNoticeType');
+            const mTitle = document.getElementById('modalNoticeTitle');
+            const mDate = document.getElementById('modalNoticeDate');
+            const mContent = document.getElementById('modalNoticeContent');
+
+            if (modal) {
+                mType.textContent = data.type;
+                mType.className = (data.type === '모집') 
+                    ? 'bg-brand-blue/10 text-brand-blue text-[10px] font-extrabold px-2.5 py-1 rounded-md' 
+                    : 'bg-slate-100 text-slate-500 text-[10px] font-extrabold px-2.5 py-1 rounded-md';
+                
+                mTitle.textContent = data.title;
+                mDate.innerHTML = `<i class="fa-regular fa-calendar"></i> ${data.date}`;
+                mContent.textContent = data.content;
+
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+            }
+        }
+
+        function closeNoticeModal() {
+            const modal = document.getElementById('noticeModal');
+            if (modal) { modal.classList.remove('flex'); modal.classList.add('hidden'); }
+        }
 
         function openSurveyModal() {
             const modal = document.getElementById('surveyModal');
             if (modal) { modal.classList.remove('hidden'); modal.classList.add('flex'); }
         }
+
         if (typeof closeSurveyModal !== 'function') {
             window.closeSurveyModal = function() {
                 const modal = document.getElementById('surveyModal');
@@ -419,3 +466,5 @@
             };
         }
     </script>
+</body>
+</html>
