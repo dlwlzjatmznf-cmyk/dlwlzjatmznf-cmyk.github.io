@@ -406,8 +406,7 @@
                 console.error('공지사항 로드 중 오류 발생:', error);
                 container.innerHTML = '<p class="text-center text-rose-500 text-sm py-4">공지사항을 안전하게 불러오지 못했습니다.</p>';
             }
-        }
-        });
+        } // ◀ 불필요했던 }); 코드를 제거하여 정상 차단 완료했습니다.
 
         function openSurveyModal() {
             const modal = document.getElementById('surveyModal');
@@ -420,5 +419,3 @@
             };
         }
     </script>
-</body>
-</html>
