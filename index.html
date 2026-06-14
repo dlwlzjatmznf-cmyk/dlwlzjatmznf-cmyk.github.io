@@ -409,12 +409,12 @@
                     
                     tbody.innerHTML += `
                         <tr onclick="openAuthModal('${item.id}')" class="hover:bg-slate-50/80 cursor-pointer transition-colors group">
-                            <td class="py-4 px-6 text-center">${badge}</td>
-                            <td class="py-4 px-6 font-bold text-slate-800 group-hover:text-brand-blue transition-colors flex items-center gap-1.5">
+                            <td class="py-2.5 px-6 text-center">${badge}</td>
+                            <td class="py-2.5 px-6 font-bold text-slate-800 group-hover:text-brand-blue transition-colors flex items-center gap-1.5">
                                 <i class="fa-solid fa-lock text-slate-300 text-xs"></i> ${item.title}
                             </td>
-                            <td class="py-4 px-6 text-center text-xs text-slate-500 font-semibold">${item.name}</td>
-                            <td class="py-4 px-6 text-center text-xs text-slate-400">${item.date.split(' ')[0]}</td>
+                            <td class="py-2.5 px-6 text-center text-xs text-slate-500 font-semibold">${item.name}</td>
+                            <td class="py-2.5 px-6 text-center text-xs text-slate-400">${item.date.split(' ')[0]}</td>
                         </tr>
                     `;
                 });
