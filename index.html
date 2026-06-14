@@ -347,6 +347,66 @@
                     modal.classList.add('hidden');
                 }
             }
+
+            // ★ 페이지 로드 시 공지사항 실시간 로드 함수 호출
+            loadNotices();
+        });
+
+        // ★ 구글 시트 공지사항 실시간 연동 핵심 엔진 함수
+        async function loadNotices() {
+            const sheetId = (typeof NOTICE_SHEET_ID !== 'undefined') ? NOTICE_SHEET_ID : '';
+            const container = document.getElementById('notice-list');
+            if (!sheetId || !container) return;
+
+            // 구글 시트 시각화 데이터 API 주소 생성
+            const url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:json`;
+
+            try {
+                const response = await fetch(url);
+                const rawData = await response.text();
+                // 구글 보안 래퍼 제거 및 순수 JSON 추출
+                const jsonString = rawData.match(/google\.visualization\.Query\.setResponse\(([\s\S]*?)\);/)[1];
+                const data = JSON.parse(jsonString);
+                const rows = data.table.rows;
+
+                let htmlString = '';
+
+                // 1행(헤더)을 제외하고 2행(index 1)부터 데이터를 읽어옴
+                for (let i = 1; i < rows.length; i++) {
+                    const row = rows[i];
+                    if (!row.c || !row.c[1]) continue; // 제목이 없으면 건너뜀
+
+                    const type = row.c[0] ? row.c[0].v : '공지'; // 구분 (모집/공지)
+                    const title = row.c[1] ? row.c[1].v : '';    // 제목
+                    const date = row.c[2] ? (row.c[2].f || row.c[2].v) : ''; // 날짜
+
+                    // 구분에 따른 디자인 배지 클래스 분기 처리
+                    const badgeClass = (type === '모집') 
+                        ? 'bg-brand-blue/10 text-brand-blue' 
+                        : 'bg-slate-100 text-slate-500';
+
+                    // 원장님이 기존에 설계한 명품 UI 템플릿 그대로 동적 복사 배치
+                    htmlString += `
+                        <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4 hover:border-brand-blue transition-colors duration-200">
+                            <div class="space-y-2">
+                                <div class="flex items-center gap-3">
+                                    <span class="${badgeClass} text-[10px] font-extrabold px-2.5 py-1 rounded-md">${type}</span>
+                                    <h4 class="font-bold text-slate-900 text-base">${title}</h4>
+                                </div>
+                            </div>
+                            <div class="flex items-center text-slate-400 text-xs gap-1 whitespace-nowrap self-end md:self-center">
+                                <i class="fa-regular fa-calendar"></i><span>${date}</span>
+                            </div>
+                        </div>
+                    `;
+                }
+
+                container.innerHTML = htmlString || '<p class="text-center text-slate-400 text-sm py-4">현재 등록된 공지사항이 없습니다.</p>';
+            } catch (error) {
+                console.error('공지사항 로드 중 오류 발생:', error);
+                container.innerHTML = '<p class="text-center text-rose-500 text-sm py-4">공지사항을 안전하게 불러오지 못했습니다.</p>';
+            }
+        }
         });
 
         function openSurveyModal() {
