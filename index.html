@@ -407,16 +407,16 @@
                         ? `<span class="px-2 py-0.5 text-[10px] font-black bg-emerald-50 text-emerald-600 rounded border border-emerald-100">답변완료</span>`
                         : `<span class="px-2 py-0.5 text-[10px] font-black bg-amber-50 text-amber-600 rounded border border-amber-100">접수대기</span>`;
                     
-                    tbody.innerHTML += `
-                        <tr onclick="openAuthModal('${item.id}')" class="hover:bg-slate-50/80 cursor-pointer transition-colors group">
-                            <td class="py-2.5 px-6 text-center">${badge}</td>
-                            <td class="py-2.5 px-6 font-bold text-slate-800 group-hover:text-brand-blue transition-colors flex items-center gap-1.5">
-                                <i class="fa-solid fa-lock text-slate-300 text-xs"></i> ${item.title}
-                            </td>
-                            <td class="py-2.5 px-6 text-center text-xs text-slate-500 font-semibold">${item.name}</td>
-                            <td class="py-2.5 px-6 text-center text-xs text-slate-400">${item.date.split(' ')[0]}</td>
-                        </tr>
-                    `;
+                tbody.innerHTML += `
+                    <tr onclick="openAuthModal('${item.id}')" class="hover:bg-slate-50/80 cursor-pointer transition-colors group">
+                        <td class="py-2.5 px-2 text-center whitespace-nowrap">${badge}</td>
+                        <td class="py-2.5 px-6 font-bold text-slate-800 group-hover:text-brand-blue transition-colors flex items-center gap-1.5">
+                            <i class="fa-solid fa-lock text-slate-300 text-xs"></i> ${item.title}
+                        </td>
+                        <td class="py-2.5 px-6 text-center text-xs text-slate-500 font-semibold">${item.name}</td>
+                        <td class="py-2.5 px-6 text-center text-xs text-slate-400">${item.date.includes('T') ? item.date.split('T')[0] : item.date.split(' ')[0]}</td>
+                    </tr>
+                `;
                 });
             }
         } catch (error) {
