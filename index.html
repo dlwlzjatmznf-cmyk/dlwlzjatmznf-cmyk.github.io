@@ -1,141 +1,244 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E.Z.C.S 이지컴스쿨</title>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        body { font-family: 'Malgun Gothic', sans-serif; }
-        .modal-bg { background-color: rgba(0, 0, 0, 0.5); }
-    </style>
-</head>
-<body class="bg-gray-50 text-gray-800 min-h-screen flex flex-col">
+n');
+            } else if (result.result === 'wrong_password') {
+                alert('비밀번호가 불일치합니다. 다시 시도해 주세요.');
+                passwordInput.value = '';
+                passwordInput.focus();
+            } else {
+                alert('존재하지 않거나 삭제된 게시글입니다.');
+                closeModal();
+            }
+        } catch (error) {
+            alert('인증 처리 중 통신 에러가 발생했습니다.');
+        } finally {
+            authBtn.disabled = false;
+            authBtn.innerText = '확인';
+        }
+    }
+    </script>
+    <!-- ========================================================== -->
+    <!-- 🛑 여기까지만 붙여넣으시면 됩니다. -->
+    <!-- ========================================================== -->
 
-    <header class="bg-white shadow-sm sticky top-0 z-40">
-        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-            <div class="flex items-center space-x-3">
-                <div class="bg-blue-600 text-white p-2 rounded-lg font-black text-xl tracking-wider">E.Z.C.S</div>
-                <span class="text-xl font-bold text-gray-900">이지컴스쿨</span>
+    <footer class="bg-[#0B1224] text-slate-400 py-16"> <!-- 👈 기존 푸터 코드 시작점 -->
+    <footer class="bg-[#0B1224] text-slate-400 py-16">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-8">
+            <div class="text-center md:text-left space-y-3">
+                <div class="flex items-center justify-center md:justify-start gap-2">
+                    <span class="font-black text-white text-lg tracking-wider">EZ<span class="text-brand-red">C</span>OM</span>
+                    <span class="font-bold text-slate-200">이지컴스쿨학원</span>
+                </div>
+                <p class="text-xs text-slate-500 leading-relaxed">
+                    경남 밀양시 중앙로 409, 2층 | 문의전화: 055-356-9821 <br>
+                    등록번호: 제 1234호 | 사업자번호 615-95-00996
+                </p>
             </div>
-            <nav class="hidden md:flex space-x-8 font-medium">
-                <a href="#notices" class="text-gray-600 hover:text-blue-600 transition">공지사항</a>
-                <a href="#board" class="text-gray-600 hover:text-blue-600 transition">실시간 상담게시판</a>
-                <a href="#courses" class="text-gray-600 hover:text-blue-600 transition">교육과정 안내</a>
-            </nav>
-            <button onclick="openSurveyManual()" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-semibold transition">
-                수요조사 참여하기
-            </button>
-        </div>
-    </header>
-
-    <main class="flex-grow max-w-7xl w-full mx-auto px-4 py-8 space-y-12">
-        
-        <section id="courses" class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div class="bg-white p-6 rounded-xl shadow-xs border border-gray-100 flex flex-col justify-between">
-                <div>
-                    <div class="text-blue-600 text-3xl mb-3"><i class="fa-solid fa-brain"></i></div>
-                    <h3 class="text-lg font-bold mb-2">생성형 AI 전문가 과정</h3>
-                    <p class="text-gray-500 text-sm">프롬프트 엔지니어링 및 n8n 워크플로우 자동화 중심의 실무 교육</p>
-                </div>
-            </div>
-            <div class="bg-white p-6 rounded-xl shadow-xs border border-gray-100 flex flex-col justify-between">
-                <div>
-                    <div class="text-green-600 text-3xl mb-3"><i class="fa-solid fa-code"></i></div>
-                    <h3 class="text-lg font-bold mb-2">파이썬 & 데이터베이스</h3>
-                    <p class="text-gray-500 text-sm">Python 기초부터 사무자동화를 위한 비즈니스 데이터 처리 및 Access 활용</p>
-                </div>
-            </div>
-            <div class="bg-white p-6 rounded-xl shadow-xs border border-gray-100 flex flex-col justify-between">
-                <div>
-                    <div class="text-amber-600 text-3xl mb-3"><i class="fa-solid fa-calculator"></i></div>
-                    <h3 class="text-lg font-bold mb-2">컴퓨터활용 및 세무회계</h3>
-                    <p class="text-gray-500 text-sm">컴퓨터활용능력 1급 단기 완성 및 전산세무회계(TAT 2급) 완벽 대비</p>
-                </div>
-            </div>
-        </section>
-
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <section id="notices" class="lg:col-span-1 bg-white p-6 rounded-xl shadow-xs border border-gray-100">
-                <h2 class="text-xl font-bold mb-4 flex items-center text-gray-900">
-                    <i class="fa-solid fa-bullhorn text-blue-600 mr-2"></i>공지사항
-                </h2>
-                <div id="notice-list" class="space-y-3 text-sm text-gray-600">
-                    <p class="text-gray-400 italic">공지사항을 불러오는 중입니다...</p>
-                </div>
-            </section>
-
-            <section id="board" class="lg:col-span-2 bg-white p-6 rounded-xl shadow-xs border border-gray-100">
-                <div class="flex justify-between items-center mb-4">
-                    <h2 class="text-xl font-bold flex items-center text-gray-900">
-                        <i class="fa-solid fa-comments text-blue-600 mr-2"></i>실시간 상담 게시판
-                    </h2>
-                    <button onclick="openWriteModal()" class="text-xs bg-gray-100 hover:bg-gray-200 text-gray-700 px-3 py-1.5 rounded-md font-medium transition">
-                        상담 신청하기
-                    </button>
-                </div>
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left border-collapse text-sm">
-                        <thead>
-                            <tr class="border-b border-gray-200 text-gray-400 font-medium">
-                                <th class="pb-2 w-16">번호</th>
-                                <th class="pb-2">상담 제목</th>
-                                <th class="pb-2 w-24">작성자</th>
-                                <th class="pb-2 w-24 text-center">상태</th>
-                            </tr>
-                        </thead>
-                        <tbody id="post-list" class="divide-y divide-gray-100 text-gray-600">
-                            <tr class="cursor-pointer hover:bg-gray-50 transition" onclick="promptPassword(101)">
-                                <td class="py-3 font-medium">101</td>
-                                <td class="py-3 flex items-center">
-                                    <i class="fa-solid fa-lock text-gray-400 mr-1.5 text-xs"></i> 국비지원 컴퓨터활용능력 일정 문의드립니다.
-                                </td>
-                                <td class="py-3 text-gray-500">김*혁</td>
-                                <td class="py-3 text-center"><span class="bg-green-50 text-green-700 px-2 py-0.5 rounded-full text-xs font-medium">답변완료</span></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </section>
-        </div>
-    </main>
-
-    <footer class="bg-gray-900 text-gray-400 text-xs py-8 mt-12 border-t border-gray-800">
-        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
-            <div class="text-center md:text-left space-y-1">
-                <p class="font-bold text-gray-200 text-sm">E.Z.C.S 이지컴스쿨 학원</p>
-                <p>경상남도 밀양시 중심가 인근 인재 양성 교육기관</p>
-                <p>사업자등록번호: 000-00-00000 | 대표자: 김동혁</p>
-            </div>
-            <div class="text-center md:text-right space-y-1">
-                <p><i class="fa-solid fa-phone mr-1"></i> 교육 상담 및 문의: 학원 행정실</p>
-                <p class="text-gray-500">&copy; 2014 E.Z.C.S. All rights reserved.</p>
+            <div class="text-xs text-slate-500 text-center md:text-right">
+                <p>&copy; 2014 EZCOM 이지컴스쿨학원. All Rights Reserved.</p>
             </div>
         </div>
     </footer>
 
-    <div id="surveyModal" class="modal-bg fixed inset-0 flex items-center justify-center hidden z-50 p-4">
-        <div class="bg-white rounded-xl w-full max-w-4xl h-5/6 overflow-hidden relative shadow-2xl flex flex-col">
-            <div class="bg-gray-50 px-6 py-4 border-b border-gray-100 flex justify-between items-center">
-                <h3 class="font-bold text-gray-900 flex items-center"><i class="fa-solid fa-poll-h text-blue-600 mr-2"></i>E.Z.C.S 교육 수요조사</h3>
-                <button onclick="closeSurveyModal()" class="text-gray-400 hover:text-gray-600 text-xl font-bold transition">&times;</button>
+    <div id="surveyModal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/60 backdrop-blur-sm p-4 transition-all duration-300">
+        <div class="bg-white w-full max-w-4xl h-[85vh] rounded-[2rem] overflow-hidden relative flex flex-col shadow-2xl border border-slate-100">
+            <div class="absolute top-4 right-4 z-50">
+                <button onclick="closeSurveyModal()" class="bg-slate-900 hover:bg-slate-800 text-white font-bold px-4 py-2 rounded-xl text-xs transition-all flex items-center gap-1.5 shadow-md">
+                    <i class="fa-solid fa-xmark text-sm"></i> 닫기
+                </button>
             </div>
-            <div class="flex-grow w-full h-full bg-white">
-                <iframe src="survey.html" class="w-full h-full border-none"></iframe>
+            <iframe src="survey.html" class="w-full h-full border-none"></iframe>
+        </div>
+    </div>
+
+    <div id="noticeModal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/60 backdrop-blur-sm p-4 transition-all duration-300">
+        <div class="bg-white w-full max-w-2xl rounded-[2rem] overflow-hidden relative flex flex-col shadow-2xl border border-slate-100 max-h-[80vh]">
+            <div class="p-6 border-b border-slate-100 flex items-center justify-between bg-slate-50">
+                <div class="flex items-center gap-3">
+                    <span id="modalNoticeType" class="text-[10px] font-extrabold px-2.5 py-1 rounded-md"></span>
+                    <span id="modalNoticeDate" class="text-slate-400 text-xs flex items-center gap-1"></span>
+                </div>
+                <button onclick="closeNoticeModal()" class="text-slate-400 hover:text-slate-600 transition-colors">
+                    <i class="fa-solid fa-xmark text-xl"></i>
+                </button>
+            </div>
+            <div class="p-8 overflow-y-auto space-y-4 flex-grow">
+                <h3 id="modalNoticeTitle" class="font-extrabold text-2xl text-slate-900 leading-tight"></h3>
+                <div id="modalNoticeContent" class="text-slate-600 leading-relaxed text-base whitespace-pre-wrap pt-5 border-t border-slate-100"></div>
+            </div>
+            <div class="p-4 bg-slate-50 border-t border-slate-100 flex justify-end">
+                <button onclick="closeNoticeModal()" class="bg-brand-blue hover:bg-brand-hover text-white font-bold px-6 py-2 rounded-xl text-sm transition-all shadow-md">
+                    확인
+                </button>
             </div>
         </div>
     </div>
 
-    <div id="passwordModal" class="modal-bg fixed inset-0 flex items-center justify-center hidden z-50 p-4">
-        <div class="bg-white rounded-lg max-w-sm w-full p-6 shadow-xl space-y-4">
-            <h3 class="font-bold text-gray-900 text-lg">비밀번호 확인</h3>
-            <p class="text-gray-500 text-xs">이 게시글은 비밀글입니다. 작성 시 설정한 비밀번호를 입력해 주세요.</p>
-            <input type="password" id="post-password-input" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-blue-600" placeholder="비밀번호 입력">
-            <input type="hidden" id="target-post-id">
-            <div class="flex justify-end space-x-2 text-sm font-medium pt-2">
-                <button onclick="closePasswordModal()" class="bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-lg transition">취소</button>
-                <button onclick="submitPostPasswordCheck()" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition">확인</button>
-            </div>
-        </div>
-    </div>
+    <script>
+        function handleLogoError(img) {
+            const parent = img.parentElement;
+            if (parent) { parent.innerHTML = `<div class="text-slate-900 font-extrabold text-xl tracking-tight select-none">EZ<span class="text-brand-red text-2xl font-black">C</span>om <span class="text-slate-500 font-medium text-base ml-2">이지컴스쿨</span></div>`; }
+        }
+        function handleClassroomError(img) {
+            const parent = img.parentElement;
+            if (parent) { parent.innerHTML = `<div class="w-full h-full bg-gradient-to-br from-slate-800 to-slate-900 flex flex-col items-center justify-center text-white text-center p-8 border border-white/5"><i class="fa-solid fa-laptop-code text-5xl text-brand-accent mb-3"></i><h4 class="font-bold text-base mb-1">최고 사양 교육 실습 시설</h4></div>`; }
+        }
+        function handleCourseError(img, type) {
+            const parent = img.parentElement; if (!parent) return;
+            let icon = 'fa-chart-simple', gradient = 'from-emerald-500/20 to-emerald-900/40', color = 'text-emerald-400';
+            if (type === 'ai') { icon = 'fa-brain'; gradient = 'from-purple-500/20 to-purple-900/40'; color = 'text-purple-400'; }
+            else if (type === 'com') { icon = 'fa-desktop'; gradient = 'from-blue-500/20 to-blue-900/40'; color = 'text-blue-400'; }
+            else if (type === 'accounting') { icon = 'fa-calculator'; gradient = 'from-amber-500/20 to-amber-900/40'; color = 'text-amber-400'; }
+            parent.innerHTML = `<div class="w-full h-full bg-gradient-to-br ${gradient} flex flex-col items-center justify-center text-center p-6"><i class="fa-solid ${icon} text-4xl ${color} mb-3"></i></div>`;
+        }
+
+        // 글로벌 공지사항 메모리 데이터 보관소
+        window.noticeDataMemory = [];
+
+        // ==========================================
+        // 지능형 마스터 스위치 로직 연동
+        // ==========================================
+        window.addEventListener('DOMContentLoaded', () => {
+            const navSurvey = document.getElementById('nav-survey');
+            const heroCardSurvey = document.getElementById('hero-card-survey');
+            const heroText = document.getElementById('hero-text');
+            const modal = document.getElementById('surveyModal');
+
+            // config.js의 변수가 안전하게 등록되어 있는지 체크 후 상태 판정
+            const isPeriod = (typeof IS_SURVEY_OPEN !== 'undefined') ? IS_SURVEY_OPEN : false;
+
+            if (isPeriod) {
+                // [ON 상태] 수요조사를 진행할 때: 전부 오픈
+                if (navSurvey) navSurvey.classList.remove('hidden');
+                if (heroCardSurvey) heroCardSurvey.classList.remove('hidden');
+                if (heroText) {
+                    heroText.classList.remove('lg:col-span-12');
+                    heroText.classList.add('lg:col-span-7');
+                }
+                if (modal) {
+                    modal.classList.remove('hidden');
+                    modal.classList.add('flex');
+                }
+            } else {
+                // [OFF 상태] 평소 상황: 흔적도 없이 숨김
+                if (navSurvey) navSurvey.classList.add('hidden');
+                if (heroCardSurvey) heroCardSurvey.classList.add('hidden');
+                if (heroText) {
+                    heroText.classList.remove('lg:col-span-7');
+                    heroText.classList.add('lg:col-span-12');
+                }
+                if (modal) {
+                    modal.classList.remove('flex');
+                    modal.classList.add('hidden');
+                }
+            }
+
+            // ★ 페이지 로드 시 공지사항 실시간 로드 함수 호출
+            loadNotices();
+        });
+
+        // ★ 구글 시트 공지사항 실시간 연동 및 팝업 매핑 엔진 함수
+        async function loadNotices() {
+            const sheetId = (typeof NOTICE_SHEET_ID !== 'undefined') ? NOTICE_SHEET_ID : '';
+            const container = document.getElementById('notice-list');
+            if (!sheetId || !container) return;
+
+            // 구글 시트 시각화 데이터 API 주소 생성
+            const url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:json`;
+
+            try {
+                const response = await fetch(url);
+                const rawData = await response.text();
+                // 구글 보안 래퍼 제거 및 순수 JSON 추출
+                const jsonString = rawData.match(/google\.visualization\.Query\.setResponse\(([\s\S]*?)\);/)[1];
+                const data = JSON.parse(jsonString);
+                const rows = data.table.rows;
+
+                let htmlString = '';
+                window.noticeDataMemory = []; // 초기화
+
+                // 1행(헤더)을 제외하고 2행(index 1)부터 데이터를 읽어옴
+                for (let i = 1; i < rows.length; i++) {
+                    const row = rows[i];
+                    if (!row.c || !row.c[1]) continue; // 제목이 없으면 건너뜀
+
+                    const type = row.c[0] ? row.c[0].v : '공지'; // A열: 구분 (모집/공지)
+                    const title = row.c[1] ? row.c[1].v : '';    // B열: 제목
+                    const date = row.c[2] ? (row.c[2].f || row.c[2].v) : ''; // C열: 날짜
+                    const content = row.c[3] ? row.c[3].v : '상세 내용이 없습니다.'; // D열: 상세내용
+
+                    // 배열 구조로 안전하게 데이터를 보관하여 인라인 문자열 깨짐 원천 방지
+                    window.noticeDataMemory.push({ type, title, date, content });
+                    const memoryIndex = window.noticeDataMemory.length - 1;
+
+                    // 구분에 따른 디자인 배지 클래스 분기 처리
+                    const badgeClass = (type === '모집') 
+                        ? 'bg-brand-blue/10 text-brand-blue' 
+                        : 'bg-slate-100 text-slate-500';
+
+                    // 원장님이 설계하신 명품 UI 스타일 그대로 유지 + 클릭 이벤트(cursor-pointer) 추가
+                    htmlString += `
+                        <div onclick="showNoticeDetail(${memoryIndex})" class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4 hover:border-brand-blue transition-colors duration-200 cursor-pointer group">
+                            <div class="space-y-2">
+                                <div class="flex items-center gap-3">
+                                    <span class="${badgeClass} text-[10px] font-extrabold px-2.5 py-1 rounded-md">${type}</span>
+                                    <h4 class="font-bold text-slate-900 text-base group-hover:text-brand-blue transition-colors">${title}</h4>
+                                </div>
+                            </div>
+                            <div class="flex items-center text-slate-400 text-xs gap-1 whitespace-nowrap self-end md:self-center">
+                                <i class="fa-regular fa-calendar"></i><span>${date}</span>
+                            </div>
+                        </div>
+                    `;
+                }
+
+                container.innerHTML = htmlString || '<p class="text-center text-slate-400 text-sm py-4">현재 등록된 공지사항이 없습니다.</p>';
+            } catch (error) {
+                console.error('공지사항 로드 중 오류 발생:', error);
+                container.innerHTML = '<p class="text-center text-rose-500 text-sm py-4">공지사항을 안전하게 불러오지 못했습니다.</p>';
+            }
+        }
+
+        // 공지사항 인덱스를 받아서 모달 창을 띄워주는 함수
+        function showNoticeDetail(index) {
+            const data = window.noticeDataMemory[index];
+            if (!data) return;
+
+            const modal = document.getElementById('noticeModal');
+            const mType = document.getElementById('modalNoticeType');
+            const mTitle = document.getElementById('modalNoticeTitle');
+            const mDate = document.getElementById('modalNoticeDate');
+            const mContent = document.getElementById('modalNoticeContent');
+
+            if (modal) {
+                mType.textContent = data.type;
+                mType.className = (data.type === '모집') 
+                    ? 'bg-brand-blue/10 text-brand-blue text-[10px] font-extrabold px-2.5 py-1 rounded-md' 
+                    : 'bg-slate-100 text-slate-500 text-[10px] font-extrabold px-2.5 py-1 rounded-md';
+                
+                mTitle.textContent = data.title;
+                mDate.innerHTML = `<i class="fa-regular fa-calendar"></i> ${data.date}`;
+                mContent.textContent = data.content;
+
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+            }
+        }
+
+        function closeNoticeModal() {
+            const modal = document.getElementById('noticeModal');
+            if (modal) { modal.classList.remove('flex'); modal.classList.add('hidden'); }
+        }
+
+        function openSurveyModal() {
+            const modal = document.getElementById('surveyModal');
+            if (modal) { modal.classList.remove('hidden'); modal.classList.add('flex'); }
+        }
+
+        if (typeof closeSurveyModal !== 'function') {
+            window.closeSurveyModal = function() {
+                const modal = document.getElementById('surveyModal');
+                if (modal) { modal.classList.remove('flex'); modal.classList.add('hidden'); }
+            };
+        }
+    </script>
+</body>
+</html>
