@@ -31,10 +31,21 @@
         }
     </script>
     
-    <style>
-        html { scroll-behavior: smooth; }
-        img { content-visibility: auto; }
-    </style>
+<style>
+    html { scroll-behavior: smooth; }
+    img { content-visibility: auto; }
+    
+    /* [여기에 추가하세요] */
+    #surveyModal iframe {
+        width: 100%;
+        height: 100%;
+        display: block;
+        border: none;
+    }
+    #surveyModal > div {
+        overflow: hidden;
+    }
+</style>
 </head>
 <body class="bg-slate-50 text-slate-800 antialiased font-sans">
 
