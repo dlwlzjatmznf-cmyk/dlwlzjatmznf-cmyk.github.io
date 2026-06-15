@@ -65,7 +65,7 @@
       box-shadow: 0 2px 6px rgba(37, 99, 235, 0.4);
     }
 
-    /* 구글 폼이 들어갈 영역 */
+    /* 구글 폼 또는 웹앱이 들어갈 영역 */
     .iframe-container {
       width: 100%;
       border-radius: 8px;
@@ -95,7 +95,6 @@
       <iframe id="googleFormIframe" src="https://docs.google.com/forms/d/e/1FAIpQLSfe6ch2os0bzkxixH1ZvvevtWMxYUQvXgdmK5kbz6QPkCDYyQ/viewform?embedded=true" title="수요조사 설문지">로드 중…</iframe>
     </div>
 
-    <!-- ★ 거울 미로 현상 해결을 위한 지능형 버튼으로 교체 -->
     <div style="margin-top: 30px; padding-bottom: 20px;">
       <button onclick="handleBackToHome()" style="background-color: #f1f5f9; color: #475569; padding: 12px 24px; border-radius: 8px; font-weight: bold; font-size: 14px; transition: background-color 0.3s; border: none; cursor: pointer; hover: background-color: #e2e8f0;">
         ← 화면 닫기 / 홈으로 돌아가기
@@ -104,12 +103,20 @@
   </div>
 
   <script>
+    // 💡 [확인 필요] 발급받으신 앱스 스크립트 웹앱 URL 주소를 여기에 적어주세요.
+    const MY_GAS_WEBAPP_URL = "https://script.google.com/macros/s/XXXXX/exec";
+
     const formUrls = {
-      // 개인용 주소
+      // 1️⃣ 만약 앱스 스크립트가 '설문지 화면 자체(HTML)'를 그려주는 방식(doGet)이라면:
+      // 아래 주소 자리에 MY_GAS_WEBAPP_URL 을 그대로 넣어주시면 iframe 내부에 원장님의 커스텀 설문지가 뜹니다.
       personal: "https://docs.google.com/forms/d/e/1FAIpQLSfe6ch2os0bzkxixH1ZvvevtWMxYUQvXgdmK5kbz6QPkCDYyQ/viewform?embedded=true",
-      // 기업용 주소 (나중에 기업용 구글폼 주소가 생기면 아래 큰따옴표 안에 넣으시면 됩니다)
+      
+      // 기업용 주소도 웹앱 주소가 다르다면 해당 주소를, 같다면 똑같이 넣어주시면 됩니다.
       corporate: "여기에_기업용_구글폼_주소를_넣으세요&embedded=true"
     };
+
+    // 만약 앱스 스크립트 웹앱 URL로 설문 화면을 바로 띄우고 싶으시다면 위의 personal 항목을 아래처럼 수정하세요:
+    // personal: MY_GAS_WEBAPP_URL,
 
     function changeForm(type) {
       const iframe = document.getElementById('googleFormIframe');
@@ -129,13 +136,11 @@
 
     // ★ 팝업창 여부를 감지하여 똑똑하게 닫아주는 신규 함수
     function handleBackToHome() {
-      // 만약 iframe(팝업창) 내부에서 열린 상태라면 부모 창의 모달 닫기 함수를 실행
       if (window.self !== window.top) {
         if (window.parent && typeof window.parent.closeSurveyModal === 'function') {
           window.parent.closeSurveyModal();
         }
       } else {
-        // 만약 주소창에 직접 쳐서 단독 페이지로 들어왔다면 메인 홈으로 이동
         location.href = "index.html";
       }
     }
