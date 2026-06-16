@@ -146,13 +146,48 @@
     <!-- [블록 05: 훈련 과정 리스트 섹션] -->
     <!-- ========================================================== -->
     <section id="courses" class="py-24 max-w-7xl mx-auto px-6">
-        <h2 class="text-3xl font-extrabold text-slate-900 text-center mb-12">주요 핵심 훈련과정</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div class="bg-white p-6 rounded-3xl shadow-md border border-slate-100"><h3 class="font-bold text-lg mb-2">재무빅데이터 분석사</h3><p class="text-slate-400 text-sm">파이썬 기반 데이터 가공</p></div>
-            <div class="bg-white p-6 rounded-3xl shadow-md border border-slate-100"><h3 class="font-bold text-lg mb-2">생성형 AI 전문가</h3><p class="text-slate-400 text-sm">최신 프롬프트 기법</p></div>
-            <div class="bg-white p-6 rounded-3xl shadow-md border border-slate-100"><h3 class="font-bold text-lg mb-2">경영정보시각화능력</h3><p class="text-slate-400 text-sm">Power BI 시각화 독점</p></div>
-            <div class="bg-white p-6 rounded-3xl shadow-md border border-slate-100"><h3 class="font-bold text-lg mb-2">FAT 1급 / TAT 2급</h3><p class="text-slate-400 text-sm">세무회계 현업 마스터</p></div>
+        <h2 class="text-3xl font-bold mb-12 text-center">주요 핵심 훈련과정</h2>
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <!-- 과정 1 -->
+            <div class="bg-white rounded-3xl shadow-md overflow-hidden border border-slate-100">
+                <img id="course-img-1" src="" class="w-full h-40 object-cover" alt="과정1">
+                <div class="p-6 text-center font-bold">재무빅데이터 분석사</div>
+            </div>
+            <!-- 과정 2 -->
+            <div class="bg-white rounded-3xl shadow-md overflow-hidden border border-slate-100">
+                <img id="course-img-2" src="" class="w-full h-40 object-cover" alt="과정2">
+                <div class="p-6 text-center font-bold">생성형 AI 전문가</div>
+            </div>
+            <!-- 과정 3 -->
+            <div class="bg-white rounded-3xl shadow-md overflow-hidden border border-slate-100">
+                <img id="course-img-3" src="" class="w-full h-40 object-cover" alt="과정3">
+                <div class="p-6 text-center font-bold">경영정보시각화능력</div>
+            </div>
+            <!-- 과정 4 -->
+            <div class="bg-white rounded-3xl shadow-md overflow-hidden border border-slate-100">
+                <img id="course-img-4" src="" class="w-full h-40 object-cover" alt="과정4">
+                <div class="p-6 text-center font-bold">FAT 1급 / TAT 2급</div>
+            </div>
         </div>
+
+        <script>
+            // Unsplash API를 통해 교육 관련 이미지를 매주 자동 교체
+            function setWeeklyImages() {
+                // 현재 날짜를 기준으로 주차(week)를 계산하여 매주 월요일마다 이미지가 변경되게 함
+                const week = Math.floor(Date.now() / (1000 * 60 * 60 * 24 * 7));
+                
+                for(let i=1; i<=4; i++) {
+                    // education과 computer 키워드로 고퀄리티 이미지를 자동 호출
+                    const imgUrl = `https://source.unsplash.com/800x600/?education,computer&sig=${i + week}`;
+                    const imgElement = document.getElementById('course-img-' + i);
+                    if (imgElement) {
+                        imgElement.src = imgUrl;
+                    }
+                }
+            }
+            // 페이지가 로드될 때 실행
+            setWeeklyImages();
+        </script>
     </section>
 
     <!-- ========================================================== -->
