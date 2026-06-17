@@ -145,48 +145,51 @@
     <!-- ========================================================== -->
     <!-- [블록 05: 훈련 과정 리스트 섹션] -->
     <!-- ========================================================== -->
-    <section id="courses" class="py-24 max-w-7xl mx-auto px-6">
+<section id="courses" class="py-24 max-w-7xl mx-auto px-6">
         <h2 class="text-3xl font-bold mb-12 text-center">주요 핵심 훈련과정</h2>
         <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <!-- 과정 1 -->
             <div class="bg-white rounded-3xl shadow-md overflow-hidden border border-slate-100">
-                <img id="course-img-1" src="" class="w-full h-40 object-cover" alt="과정1">
+                <img id="course-img-1" src="" class="w-full h-40 object-cover" alt="재무빅데이터">
                 <div class="p-6 text-center font-bold">재무빅데이터 분석사</div>
             </div>
-            <!-- 과정 2 -->
             <div class="bg-white rounded-3xl shadow-md overflow-hidden border border-slate-100">
-                <img id="course-img-2" src="" class="w-full h-40 object-cover" alt="과정2">
+                <img id="course-img-2" src="" class="w-full h-40 object-cover" alt="생성형 AI">
                 <div class="p-6 text-center font-bold">생성형 AI 전문가</div>
             </div>
-            <!-- 과정 3 -->
             <div class="bg-white rounded-3xl shadow-md overflow-hidden border border-slate-100">
-                <img id="course-img-3" src="" class="w-full h-40 object-cover" alt="과정3">
+                <img id="course-img-3" src="" class="w-full h-40 object-cover" alt="경영정보시각화">
                 <div class="p-6 text-center font-bold">경영정보시각화능력</div>
             </div>
-            <!-- 과정 4 -->
             <div class="bg-white rounded-3xl shadow-md overflow-hidden border border-slate-100">
-                <img id="course-img-4" src="" class="w-full h-40 object-cover" alt="과정4">
+                <img id="course-img-4" src="" class="w-full h-40 object-cover" alt="회계과정">
                 <div class="p-6 text-center font-bold">FAT 1급 / TAT 2급</div>
             </div>
         </div>
 
         <script>
-            // Unsplash API를 통해 교육 관련 이미지를 매주 자동 교체
-            function setWeeklyImages() {
-                // 현재 날짜를 기준으로 주차(week)를 계산하여 매주 월요일마다 이미지가 변경되게 함
-                const week = Math.floor(Date.now() / (1000 * 60 * 60 * 24 * 7));
+            function updateDailyImages() {
+                const day = new Date().getDate();
+                // 10일 단위로 이미지 변경 (_1, _2, _3 접미사 활용)
+                const suffix = day <= 10 ? "1" : (day <= 20 ? "2" : "3");
+                const baseUrl = "https://raw.githubusercontent.com/dlwlzjatmznf-cmyk/dlwlzjatmznf-cmyk.github.io/main/IMG/";
                 
+                // 각 분야별 파일명 매핑
+                const fileNames = [
+                    "bigdata_", // 1번 과정
+                    "ai_",      // 2번 과정
+                    "tech_",    // 3번 과정
+                    "fin_"      // 4번 과정
+                ];
+
                 for(let i=1; i<=4; i++) {
-                    // education과 computer 키워드로 고퀄리티 이미지를 자동 호출
-                    const imgUrl = `https://source.unsplash.com/800x600/?education,computer,ai,tax&sig=${i + week}`;
                     const imgElement = document.getElementById('course-img-' + i);
                     if (imgElement) {
-                        imgElement.src = imgUrl;
+                        // 예: .../IMG/bigdata_1.jfif 조합
+                        imgElement.src = baseUrl + fileNames[i-1] + suffix + ".jfif";
                     }
                 }
             }
-            // 페이지가 로드될 때 실행
-            setWeeklyImages();
+            updateDailyImages();
         </script>
     </section>
 
