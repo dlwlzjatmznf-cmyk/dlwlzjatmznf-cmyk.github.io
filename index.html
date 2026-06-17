@@ -309,5 +309,41 @@
             openSurveyModal();
         }
     </script>
+
+    <!-- ========================================================== -->
+    <!-- [블록 10: 공지사항 / 상담게시판 불러오기 -->
+    <!-- ========================================================== -->
+    <script>
+    const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbx7GEFS8cR655Mrx5cKtQq4kydlE0Zb2Ot6zg8y_eo1PvwDIbuqq4qhy9bAM8I9gSOvBw/exec";
+
+    // 1. 게시판 목록 불러오기 (페이지 로드 시)
+    function loadCounselList() {
+        fetch(WEB_APP_URL, {
+            method: 'POST',
+            body: JSON.stringify({ action: "list" })
+        })
+        .then(res => res.json())
+        .then(res => {
+            if(res.result === "success") {
+                // 여기서 res.data를 사용하여 HTML 테이블/리스트를 그리면 됩니다.
+                console.log("게시판 데이터 로드 완료:", res.data);
+            }
+        });
+    }
+
+    // 2. 상담글 작성하기 (폼 제출 시)
+    function submitCounsel(name, password, title, content) {
+        fetch(WEB_APP_URL, {
+            method: 'POST',
+            body: JSON.stringify({ action: "submit", name, password, title, content })
+        })
+        .then(res => res.json())
+        .then(res => {
+            if(res.result === "success") alert("상담이 등록되었습니다.");
+        });
+    }
+
+    loadCounselList(); // 실행
+</script>
 </body>
 </html>
