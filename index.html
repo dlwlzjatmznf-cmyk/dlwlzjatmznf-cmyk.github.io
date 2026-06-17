@@ -341,25 +341,6 @@
     function loadNoticeList() {
         fetch(WEB_APP_URL, {
             method: 'POST',
-            body: JSON.stringify({ action: "notice" }) // notice 시트 호출
-        })
-        .then(res => res.json())
-        .then(res => {
-            if(res.result === "success") {
-                const container = document.getElementById('notice-list');
-                container.innerHTML = res.data.map(item => `
-                    <div class="border-b py-3 flex justify-between">
-                        <span class="font-bold">${item.title}</span>
-                        <span class="text-slate-400 text-xs">${item.date}</span>
-                    </div>
-                `).join('');
-            }
-        });
-    }
-    // 02. 공지사항 불러오기 함수
-    function loadNoticeList() {
-        fetch(WEB_APP_URL, {
-            method: 'POST',
             body: JSON.stringify({ action: "notice" })
         })
         .then(res => res.json())
@@ -367,9 +348,11 @@
             if(res.result === "success") {
                 const container = document.getElementById('notice-list');
                 container.innerHTML = res.data.map(item => `
-                    <div class="border-b py-3 flex justify-between">
-                        <span class="font-bold">${item.title}</span>
-                        <span class="text-slate-400 text-xs">${item.date}</span>
+                    <div class="border-b py-3">
+                        <div class="flex justify-between cursor-pointer" onclick="alert('${item.detail}')">
+                            <span class="font-bold">${item.title}</span>
+                            <span class="text-slate-400 text-xs">${item.date}</span>
+                        </div>
                     </div>
                 `).join('');
             }
