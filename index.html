@@ -347,12 +347,12 @@ function loadCounselList() {
     .then(res => {
         if(res.result === "success") {
             const container = document.getElementById('counsel-list');
-            container.innerHTML = res.data.map(item => `
-                <div class="border-b py-3 flex justify-between">
-                    <span class="font-bold">${item.title}</span>
-                    <span class="text-slate-400">${item.name} (${item.status})</span>
-                </div>
-            `).join('');
+    container.innerHTML = res.data.map(item => `
+        <div class="border-b py-3 flex justify-between cursor-pointer hover:bg-slate-50" onclick="viewCounselDetail('${item.id}')">
+            <span class="font-bold">${item.title}</span>
+            <span class="text-slate-400">${item.name} (${item.status})</span>
+        </div>
+    `).join('');
         }
     });
 }
