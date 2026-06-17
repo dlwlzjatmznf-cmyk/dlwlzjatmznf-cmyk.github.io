@@ -215,7 +215,8 @@
         <div class="max-w-4xl mx-auto px-6">
             <h2 class="text-3xl font-extrabold text-slate-900 text-center mb-4">온라인 상담 게시판</h2>
             <p class="text-slate-500 text-sm text-center mb-8">궁금한 점을 남겨주시면 원장님이 직접 답변해 드립니다.</p>
-            <div id="counsel-list" class="bg-white p-6 rounded-3xl shadow-sm text-sm"></div>
+              <div id="counsel-list"></div> <!-- 기존 목록 자리 -->
+            <div id="pagination" class="flex justify-center gap-2 mt-6"></div> <!-- 페이지 버튼 자리 -->
         </div>
         <div class="mt-8 text-center">
     <button onclick="document.getElementById('writeModal').classList.remove('hidden')" class="bg-slate-900 text-white px-6 py-3 rounded-xl font-bold hover:bg-slate-800 transition-colors">
@@ -359,22 +360,34 @@
         });
     }
         
-    // 1. 상담 게시판 목록 불러오기 (페이지 로드 시)
-function loadCounselList() {
+// 1. 상담 게시판 목록 불러오기 (페이지 번호 지원)
+function loadCounselList(page = 1) {
     fetch(WEB_APP_URL, {
         method: 'POST',
-        body: JSON.stringify({ action: "list" })
+        body: JSON.stringify({ action: "list", page: page }) // page 전달
     })
     .then(res => res.json())
     .then(res => {
         if(res.result === "success") {
             const container = document.getElementById('counsel-list');
-    container.innerHTML = res.data.map(item => `
-        <div class="border-b py-3 flex justify-between cursor-pointer hover:bg-slate-50" onclick="viewCounselDetail('${item.id}')">
-            <span class="font-bold">${item.title}</span>
-            <span class="text-slate-400">${item.name} (${item.status})</span>
-        </div>
-    `).join('');
+            // 목록 렌더링
+            container.innerHTML = res.data.map(item => `
+                <div class="border-b py-3 flex justify-between cursor-pointer hover:bg-slate-50" onclick="viewCounselDetail('${item.id}')">
+                    <span class="font-bold">${item.title}</span>
+                    <span class="text-slate-400">${item.name} (${item.status})</span>
+                </div>
+            `).join('');
+
+            // 페이지 버튼 생성 (totalPage 사용)
+            let paginationHtml = '';
+            for(let i = 1; i <= res.totalPage; i++) {
+                paginationHtml += `
+                    <button onclick="loadCounselList(${i})" 
+                            class="px-3 py-1 border rounded ${i === page ? 'bg-slate-900 text-white' : 'bg-white'}">
+                        ${i}
+                    </button>`;
+            }
+            document.getElementById('pagination').innerHTML = paginationHtml;
         }
     });
 }
