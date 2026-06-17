@@ -215,7 +215,7 @@
         <div class="max-w-4xl mx-auto px-6">
             <h2 class="text-3xl font-extrabold text-slate-900 text-center mb-4">온라인 상담 게시판</h2>
             <p class="text-slate-500 text-sm text-center mb-8">궁금한 점을 남겨주시면 원장님이 직접 답변해 드립니다.</p>
-            <div class="bg-white p-6 rounded-3xl shadow-sm text-center text-sm text-slate-400">데이터 로딩 시스템 연동 단계 대기 중</div>
+            <div id="counsel-list" class="bg-white p-6 rounded-3xl shadow-sm text-sm"></div>
         </div>
     </section>
 
@@ -317,19 +317,25 @@
     const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbx7GEFS8cR655Mrx5cKtQq4kydlE0Zb2Ot6zg8y_eo1PvwDIbuqq4qhy9bAM8I9gSOvBw/exec";
 
     // 1. 게시판 목록 불러오기 (페이지 로드 시)
-    function loadCounselList() {
-        fetch(WEB_APP_URL, {
-            method: 'POST',
-            body: JSON.stringify({ action: "list" })
-        })
-        .then(res => res.json())
-        .then(res => {
-            if(res.result === "success") {
-                // 여기서 res.data를 사용하여 HTML 테이블/리스트를 그리면 됩니다.
-                console.log("게시판 데이터 로드 완료:", res.data);
-            }
-        });
-    }
+   // [블록 10]의 loadCounselList 함수 내부만 이렇게 바꾸세요
+function loadCounselList() {
+    fetch(WEB_APP_URL, {
+        method: 'POST',
+        body: JSON.stringify({ action: "list" })
+    })
+    .then(res => res.json())
+    .then(res => {
+        if(res.result === "success") {
+            const container = document.getElementById('counsel-list');
+            container.innerHTML = res.data.map(item => `
+                <div class="border-b py-3 flex justify-between">
+                    <span class="font-bold">${item.title}</span>
+                    <span class="text-slate-400">${item.name} (${item.status})</span>
+                </div>
+            `).join('');
+        }
+    });
+}
 
     // 2. 상담글 작성하기 (폼 제출 시)
     function submitCounsel(name, password, title, content) {
