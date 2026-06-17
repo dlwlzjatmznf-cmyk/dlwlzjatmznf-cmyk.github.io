@@ -148,45 +148,49 @@
 <section id="courses" class="py-24 max-w-7xl mx-auto px-6">
         <h2 class="text-3xl font-bold mb-12 text-center">주요 핵심 훈련과정</h2>
         <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div class="bg-white rounded-3xl shadow-md overflow-hidden border border-slate-100">
+            <div class="bg-white rounded-3xl shadow-md overflow-hidden border border-slate-100 flex flex-col">
                 <img id="course-img-1" src="" class="w-full h-40 object-cover" alt="재무빅데이터">
-                <div class="p-6 text-center font-bold">재무빅데이터 분석사</div>
+                <div class="p-6 flex-grow">
+                    <h3 class="font-bold text-lg mb-2">재무빅데이터 분석사</h3>
+                    <p class="text-slate-500 text-sm mb-4">데이터를 활용한 재무 전략 수립 실무 과정입니다.</p>
+                    <a href="course1_detail.html" class="block text-center bg-blue-50 text-blue-600 py-2 rounded-xl font-semibold hover:bg-blue-100 transition">자세히 보기</a>
+                </div>
             </div>
-            <div class="bg-white rounded-3xl shadow-md overflow-hidden border border-slate-100">
+            <div class="bg-white rounded-3xl shadow-md overflow-hidden border border-slate-100 flex flex-col">
                 <img id="course-img-2" src="" class="w-full h-40 object-cover" alt="생성형 AI">
-                <div class="p-6 text-center font-bold">생성형 AI 전문가</div>
+                <div class="p-6 flex-grow">
+                    <h3 class="font-bold text-lg mb-2">생성형 AI 전문가</h3>
+                    <p class="text-slate-500 text-sm mb-4">ChatGPT 등 최신 AI 도구를 실무에 적용합니다.</p>
+                    <a href="course2_detail.html" class="block text-center bg-blue-50 text-blue-600 py-2 rounded-xl font-semibold hover:bg-blue-100 transition">자세히 보기</a>
+                </div>
             </div>
-            <div class="bg-white rounded-3xl shadow-md overflow-hidden border border-slate-100">
+            <div class="bg-white rounded-3xl shadow-md overflow-hidden border border-slate-100 flex flex-col">
                 <img id="course-img-3" src="" class="w-full h-40 object-cover" alt="경영정보시각화">
-                <div class="p-6 text-center font-bold">경영정보시각화능력</div>
+                <div class="p-6 flex-grow">
+                    <h3 class="font-bold text-lg mb-2">경영정보시각화능력</h3>
+                    <p class="text-slate-500 text-sm mb-4">복잡한 데이터를 명확한 그래프로 시각화합니다.</p>
+                    <a href="course3_detail.html" class="block text-center bg-blue-50 text-blue-600 py-2 rounded-xl font-semibold hover:bg-blue-100 transition">자세히 보기</a>
+                </div>
             </div>
-            <div class="bg-white rounded-3xl shadow-md overflow-hidden border border-slate-100">
+            <div class="bg-white rounded-3xl shadow-md overflow-hidden border border-slate-100 flex flex-col">
                 <img id="course-img-4" src="" class="w-full h-40 object-cover" alt="회계과정">
-                <div class="p-6 text-center font-bold">FAT 1급 / TAT 2급</div>
+                <div class="p-6 flex-grow">
+                    <h3 class="font-bold text-lg mb-2">FAT 1급 / TAT 2급</h3>
+                    <p class="text-slate-500 text-sm mb-4">회계 실무 및 자격증 취득을 위한 필수 과정입니다.</p>
+                    <a href="course4_detail.html" class="block text-center bg-blue-50 text-blue-600 py-2 rounded-xl font-semibold hover:bg-blue-100 transition">자세히 보기</a>
+                </div>
             </div>
         </div>
 
         <script>
             function updateDailyImages() {
                 const day = new Date().getDate();
-                // 10일 단위로 이미지 변경 (_1, _2, _3 접미사 활용)
                 const suffix = day <= 10 ? "1" : (day <= 20 ? "2" : "3");
                 const baseUrl = "https://raw.githubusercontent.com/dlwlzjatmznf-cmyk/dlwlzjatmznf-cmyk.github.io/main/IMG/";
-                
-                // 각 분야별 파일명 매핑
-                const fileNames = [
-                    "bigdata_", // 1번 과정
-                    "ai_",      // 2번 과정
-                    "tech_",    // 3번 과정
-                    "fin_"      // 4번 과정
-                ];
-
+                const fileNames = ["bigdata_", "ai_", "tech_", "fin_"];
                 for(let i=1; i<=4; i++) {
                     const imgElement = document.getElementById('course-img-' + i);
-                    if (imgElement) {
-                        // 예: .../IMG/bigdata_1.jfif 조합
-                        imgElement.src = baseUrl + fileNames[i-1] + suffix + ".jfif";
-                    }
+                    if (imgElement) imgElement.src = baseUrl + fileNames[i-1] + suffix + ".jfif";
                 }
             }
             updateDailyImages();
