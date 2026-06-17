@@ -359,14 +359,27 @@ function loadCounselList() {
 
     // 2. 상담글 작성하기 (폼 제출 시)
 // 상담글 등록 기능
- function submitCounsel(name, password, title, content) {
+ // 상담글 등록 기능
+    function submitNewCounsel() {
+        const data = {
+            action: "submit",
+            name: document.getElementById('counselName').value,
+            password: document.getElementById('counselPass').value,
+            title: document.getElementById('counselTitle').value,
+            content: document.getElementById('counselContent').value
+        };
         fetch(WEB_APP_URL, {
             method: 'POST',
-            body: JSON.stringify({ action: "submit", name, password, title, content })
+            body: JSON.stringify(data)
         })
         .then(res => res.json())
         .then(res => {
-            if(res.result === "success") alert("상담이 등록되었습니다.");
+            if(res.result === "success") {
+                alert("상담이 등록되었습니다.");
+                location.reload(); // 성공하면 페이지를 새로고침해서 목록을 갱신합니다.
+            } else {
+                alert("등록에 실패했습니다.");
+            }
         });
     }
 
