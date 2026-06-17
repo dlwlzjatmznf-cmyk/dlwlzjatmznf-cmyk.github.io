@@ -204,7 +204,7 @@
     <section id="notice" class="bg-white py-24 border-t border-b border-slate-100">
         <div class="max-w-4xl mx-auto px-6">
             <h2 class="text-3xl font-extrabold text-slate-900 text-center mb-8">학원 공지사항</h2>
-            <div class="bg-slate-50 rounded-2xl p-6 text-center text-slate-400 text-sm">공지사항 시스템 연동 준비 중...</div>
+            <div id="notice-list" class="bg-white p-6 rounded-3xl shadow-sm"></div>
         </div>
     </section>
 
@@ -337,7 +337,27 @@
     <script>
     const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxGbjICX_uUgTrIvRB4hSyztvL5zKH12siqqcf-mlf6BsvC35wOlqqDt7sjVJ9i1tBOzA/exec";
 
-    // 1. 게시판 목록 불러오기 (페이지 로드 시)
+    // 0. 공지사항 목록 불러오기 (페이지 로드 시)
+    function loadNoticeList() {
+        fetch(WEB_APP_URL, {
+            method: 'POST',
+            body: JSON.stringify({ action: "notice" }) // notice 시트 호출
+        })
+        .then(res => res.json())
+        .then(res => {
+            if(res.result === "success") {
+                const container = document.getElementById('notice-list');
+                container.innerHTML = res.data.map(item => `
+                    <div class="border-b py-3 flex justify-between">
+                        <span class="font-bold">${item.title}</span>
+                        <span class="text-slate-400 text-xs">${item.date}</span>
+                    </div>
+                `).join('');
+            }
+        });
+    }
+
+    // 1. 상담 게시판 목록 불러오기 (페이지 로드 시)
 function loadCounselList() {
     fetch(WEB_APP_URL, {
         method: 'POST',
@@ -382,7 +402,7 @@ function loadCounselList() {
         });
     }
     loadCounselList(); // 실행
-    // 게시글 클릭 시 비밀번호 확인 및 내용 보기
+    // 상담 게시글 클릭 시 비밀번호 확인 및 내용 보기
     function viewCounselDetail(id) {
         const pass = prompt("비밀번호를 입력하세요:");
         if (!pass) return; // 취소 누르면 종료
