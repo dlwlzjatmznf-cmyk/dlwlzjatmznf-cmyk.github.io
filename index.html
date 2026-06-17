@@ -251,60 +251,60 @@
     <script>
         /**
          * ⚙️ 원장님 전용 설정 톱니바퀴
-         * 수요조사를 시작할 날짜와 끝나는 날짜를 여기에 YYYY-MM-DD 형식으로 입력하세요.
-         * 시스템이 자동으로 오늘 날짜와 계산하여 기간이 맞을 때만 팝업을 브라우저에 띄웁니다.
+         * 수요조사를 시작할 날짜와 끝나는 날짜를 입력하세요.
          */
         const SURVEY_CONFIG = {
-            startDate: "2025-06-01", // 수요조사 시작일
-            endDate: "2025-07-31"    // 수요조사 종료일
+            startDate: "2026-06-01", 
+            endDate: "2026-07-31"    
         };
 
-        // 페이지가 완전히 켜지면 날짜 검증 엔진 가동
+        // 페이지 로드 시 엔진 가동
         document.addEventListener("DOMContentLoaded", function() {
             checkSurveyPeriod();
         });
 
         /**
-         * [날짜 검증 함수] - 설정 기간에 부합할 때만 팝업 활성화
+         * [날짜 검증 및 기능 제어 함수]
          */
         function checkSurveyPeriod() {
             const today = new Date();
             const start = new Date(SURVEY_CONFIG.startDate + "T00:00:00");
             const end = new Date(SURVEY_CONFIG.endDate + "T23:59:59");
+            const isWithinPeriod = (today >= start && today <= end);
 
-            // 오늘이 시작일과 종료일 사이에 속해있다면 자동 오픈
-            if (today >= start && today <= end) {
+            // 1. 기간 내라면 팝업 자동 오픈
+            if (isWithinPeriod) {
                 openSurveyModal();
+            }
+
+            // 2. 메뉴와 버튼 노출 제어
+            const menuSurvey = document.getElementById('menu-survey');
+            const btnSurvey = document.getElementById('btn-survey');
+            
+            if (!isWithinPeriod) {
+                if(menuSurvey) menuSurvey.style.display = 'none';
+                if(btnSurvey) btnSurvey.style.display = 'none';
             }
         }
 
-        /**
-         * [모달 오픈 핸들러] - 메인 메뉴 방해 막을 수 있도록 안전 계층 분리
-         */
         function openSurveyModal() {
             const modal = document.getElementById('surveyModal');
             if (modal) {
                 modal.classList.remove('hidden');
                 modal.classList.add('flex');
-                document.body.style.overflow = 'hidden'; // 뒷배경 스크롤 방지
+                document.body.style.overflow = 'hidden';
             }
         }
 
-        /**
-         * [모달 종료 핸들러] - 완벽 분리하여 메인 메뉴 작동 먹통 현상 해결
-         */
         function closeSurveyModal() {
             const modal = document.getElementById('surveyModal');
             if (modal) {
                 modal.classList.remove('flex');
                 modal.classList.add('hidden');
-                document.body.style.overflow = ''; // 뒷배경 스크롤 복구
+                document.body.style.overflow = '';
             }
         }
 
-        /**
-         * [강제 오픈 함수] - 메뉴나 링크 버튼을 직접 눌렀을 때 작동
-         */
         function forceOpenSurvey() {
             openSurveyModal();
         }
