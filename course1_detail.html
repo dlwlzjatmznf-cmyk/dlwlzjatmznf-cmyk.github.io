@@ -6,10 +6,47 @@
     <title>상세 과정 안내</title>
 </head>
 <body class="bg-slate-50 p-10">
-    <div class="max-w-4xl mx-auto bg-white p-12 rounded-3xl shadow-lg">
-        <h1 class="text-3xl font-bold mb-6">재무 빅데이터 분석사</h1>
-        <p class="text-slate-600 leading-relaxed mb-8">여기에 해당 과정의 커리큘럼, 대상자, 교육 시간 등 상세 내용을 입력하세요.</p>
-        <a href="index.html" class="text-blue-600 font-bold">← 메인으로 돌아가기</a>
+<div class="max-w-4xl mx-auto py-12 px-6">
+    <h1 class="text-4xl font-extrabold text-slate-900 mb-6">재무빅데이터 분석사</h1>
+    
+    <div class="relative h-64 overflow-hidden rounded-2xl mb-8">
+        <img src="IMG/fin_1.jfif" class="course-img absolute inset-0 w-full h-full object-cover transition-opacity duration-1000">
+        <img src="IMG/fin_2.jfif" class="course-img absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-0">
+        <img src="IMG/fin_3.jfif" class="course-img absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-0">
     </div>
+
+    <div class="prose max-w-none text-gray-700 leading-relaxed">
+        <h2 class="text-2xl font-bold mb-4">과정 소개</h2>
+        <p class="mb-6">
+            기업의 재무 데이터를 수집, 정제, 분석하여 의사결정에 필요한 통찰을 도출하는 융합 인재 양성 과정입니다. 
+            회계 지식에 데이터 분석 도구를 더해 실무 경쟁력을 극대화합니다.
+        </p>
+
+        <h2 class="text-2xl font-bold mb-4">주요 학습 내용</h2>
+        <ul class="list-disc pl-5 mb-6 space-y-2">
+            <li>재무제표 분석 및 핵심 지표 추출</li>
+            <li>데이터 수집(Crawling) 및 전처리 기법</li>
+            <li>통계 분석 및 시각화(Python/Tableau 활용)</li>
+            <li>데이터 기반 경영 의사결정 사례 연구</li>
+        </ul>
+
+        <div class="bg-blue-50 p-6 rounded-xl border border-blue-100">
+            <h3 class="font-bold text-blue-900">이런 분들께 추천합니다!</h3>
+            <p>회계·재무 직무 취업을 준비하시는 분, 재무 데이터를 활용한 경영 분석 능력을 갖추고 싶은 예비 전문가.</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    // 이미지 자동 슬라이드 로직
+    let idx = 0;
+    const imgs = document.querySelectorAll('.course-img');
+    setInterval(() => {
+        imgs[idx].classList.add('opacity-0');
+        idx = (idx + 1) % imgs.length;
+        imgs[idx].classList.remove('opacity-0');
+    }, 3000);
+</script>
+
 </body>
 </html>
