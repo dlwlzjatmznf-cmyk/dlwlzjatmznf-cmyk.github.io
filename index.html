@@ -347,22 +347,19 @@
     const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbyUHfGPb6B6tgn-A7EaN7C-D-qFZzdxirj6de-CtixqQp_P3pneXcnNtucU2dsWNlvdZg/exec";
 
     // 01. 공지사항 목록 불러오기 (페이지 로드 시)
-// 1. 공지사항 데이터를 안전하게 임시 보관할 그릇을 만듭니다.
-let globalNoticeList = [];
-
 function loadNoticeList() {
     fetch(WEB_APP_URL, {
         method: 'POST',
-        body: JSON.stringify({ action: "notice" })
+        body: JSON.stringify({ action: "notice" }) // 이 명령어 단어가 다를 수 있습니다.
     })
     .then(res => res.json())
     .then(res => {
+        // 1. 서버가 보내준 응답을 팝업창으로 직접 확인합니다.
+        alert("서버 응답 결과: " + JSON.stringify(res));
+        
         if(res.result === "success") {
-            // 가져온 데이터를 전역 변수에 안전하게 저장 (따옴표, 줄바꿈 깨짐 방지)
             globalNoticeList = res.data; 
-            
             const container = document.getElementById('notice-list');
-            // ★ 핵심 수정: item.detail을 직접 넣지 않고, 몇 번째(index)인지만 전달합니다.
             container.innerHTML = res.data.map((item, index) => `
                 <div class="border-b py-3">
                     <div class="flex justify-between cursor-pointer" onclick="showNoticeAlert(${index})">
@@ -374,19 +371,12 @@ function loadNoticeList() {
         }
     })
     .catch(error => {
-        console.error("공지사항 로딩 중 오류:", error);
+        // 2. 에러가 발생했다면 에러 내용도 팝업으로 띄웁니다.
+        alert("네트워크 또는 파싱 에러 발생: " + error.message);
     })
     .finally(() => {
-        // 공지사항 처리가 끝나면 무조건 상담게시판을 호출합니다.
         loadCounselList(); 
     });
-}
-
-// 2. 글자 깨짐 없이 안전하게 알림창을 띄워주는 함수를 추가합니다.
-function showNoticeAlert(index) {
-    if (globalNoticeList[index]) {
-        alert(globalNoticeList[index].detail);
-    }
 }
         
 // 1. 상담 게시판 목록 불러오기 (페이지 번호 지원)
