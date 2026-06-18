@@ -5,11 +5,36 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <title>상세 과정 안내</title>
 </head>
-<body class="bg-slate-50 p-10">
-    <div class="max-w-4xl mx-auto bg-white p-12 rounded-3xl shadow-lg">
-        <h1 class="text-3xl font-bold mb-6">생성형 AI 전문가</h1>
-        <p class="text-slate-600 leading-relaxed mb-8">여기에 해당 과정의 커리큘럼, 대상자, 교육 시간 등 상세 내용을 입력하세요.</p>
-        <a href="index.html" class="text-blue-600 font-bold">← 메인으로 돌아가기</a>
+<div class="max-w-4xl mx-auto py-12 px-6">
+    <a href="index.html" class="text-blue-600 hover:underline mb-4 block">← 메인으로 돌아가기</a>
+    <h1 class="text-4xl font-extrabold text-slate-900 mb-6">생성형 AI 전문가</h1>
+    
+    <div class="relative h-64 overflow-hidden rounded-2xl mb-8">
+        <img src="IMG/ai_1.jfif" class="course-img absolute inset-0 w-full h-full object-cover transition-opacity duration-1000">
+        <img src="IMG/ai_2.jfif" class="course-img absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-0">
+        <img src="IMG/ai_3.jfif" class="course-img absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-0">
     </div>
-</body>
+
+    <div class="prose max-w-none text-gray-700 leading-relaxed">
+        <h2 class="text-2xl font-bold mb-4">과정 소개</h2>
+        <p class="mb-6">초거대 AI 모델의 원리를 이해하고, 업무 자동화와 콘텐츠 생성에 활용하는 프롬프트 엔지니어링 실무 과정입니다.</p>
+
+        <h2 class="text-2xl font-bold mb-4">주요 학습 내용</h2>
+        <ul class="list-disc pl-5 mb-6 space-y-2">
+            <li>LLM(거대언어모델) 구조와 동작 원리</li>
+            <li>실무 효율을 높이는 프롬프트 엔지니어링</li>
+            <li>AI 기반 자동화 도구 연동 및 API 활용</li>
+            <li>AI 윤리 및 생성형 모델 구축 프로젝트</li>
+        </ul>
+    </div>
+</div>
+<script>
+    let idx = 0;
+    const imgs = document.querySelectorAll('.course-img');
+    setInterval(() => {
+        imgs[idx].classList.add('opacity-0');
+        idx = (idx + 1) % imgs.length;
+        imgs[idx].classList.remove('opacity-0');
+    }, 3000);
+</script>
 </html>
