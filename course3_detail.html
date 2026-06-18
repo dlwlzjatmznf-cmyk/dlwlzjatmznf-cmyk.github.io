@@ -6,10 +6,58 @@
     <title>상세 과정 안내</title>
 </head>
 <body class="bg-slate-50 p-10">
-    <div class="max-w-4xl mx-auto bg-white p-12 rounded-3xl shadow-lg">
-        <h1 class="text-3xl font-bold mb-6">경영정보시각화능력</h1>
-        <p class="text-slate-600 leading-relaxed mb-8">여기에 해당 과정의 커리큘럼, 대상자, 교육 시간 등 상세 내용을 입력하세요.</p>
-        <a href="index.html" class="text-blue-600 font-bold">← 메인으로 돌아가기</a>
+    <div class="max-w-4xl mx-auto bg-white p-12 rounded-3<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>훈련과정 상세 안내</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .course-img { transition: opacity 1s ease-in-out; }
+    </style>
+</head>
+<body class="bg-white text-slate-900">
+
+    <nav class="flex items-center justify-between p-6 border-b border-gray-100">
+        <a href="index.html" class="text-2xl font-black tracking-tighter">이지컴스쿨</a>
+        <a href="index.html" class="bg-slate-100 px-4 py-2 rounded-full text-sm font-bold hover:bg-slate-200 transition-all">← 메인으로 돌아가기</a>
+    </nav>
+
+    <div class="max-w-4xl mx-auto py-12 px-6">
+    <h1 class="text-4xl font-extrabold text-slate-900 mb-6">경영정보시각화능력</h1>
+    
+    <div class="relative h-64 overflow-hidden rounded-2xl mb-8">
+        <img src="IMG/bigdata_1.jfif" class="course-img absolute inset-0 w-full h-full object-cover transition-opacity duration-1000">
+        <img src="IMG/bigdata_2.jfif" class="course-img absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-0">
+        <img src="IMG/bigdata_3.jfif" class="course-img absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-0">
     </div>
+
+    <div class="prose max-w-none text-gray-700 leading-relaxed">
+        <h2 class="text-2xl font-bold mb-4">과정 소개</h2>
+        <p class="mb-6">복잡한 기업 데이터를 직관적인 대시보드로 시각화하여 경영진의 의사결정을 지원하는 전문가 양성 과정입니다.</p>
+
+        <h2 class="text-2xl font-bold mb-4">주요 학습 내용</h2>
+        <ul class="list-disc pl-5 mb-6 space-y-2">
+            <li>데이터 시각화 프로세스 이해</li>
+            <li>BI 도구(Power BI/Tableau) 활용법</li>
+            <li>대시보드 설계 및 인터랙티브 리포팅</li>
+            <li>데이터 기반 경영 성과 분석 실습</li>
+        </ul>
+    </div>
+</div>
+
+<script>
+    // 이미지 자동 슬라이드 로직
+    let idx = 0;
+    const imgs = document.querySelectorAll('.course-img');
+    setInterval(() => {
+        imgs[idx].classList.add('opacity-0');
+        idx = (idx + 1) % imgs.length;
+        imgs[idx].classList.remove('opacity-0');
+    }, 3000);
+</script>
+</body>
+</html>x
 </body>
 </html>
