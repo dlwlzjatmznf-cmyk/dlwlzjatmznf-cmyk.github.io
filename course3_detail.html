@@ -1,65 +1,45 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="utf-8">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <title>상세 과정 안내</title>
-</head>
-<body class="bg-slate-50 p-10">
-    <div class="max-w-4xl mx-auto bg-white p-12 rounded-3<!DOCTYPE html>
-<html lang="ko">
-<head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>훈련과정 상세 안내</title>
+    <title>재무빅데이터 분석사</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        .course-img { transition: opacity 1s ease-in-out; }
-    </style>
+    <style>.course-img { transition: opacity 1s ease-in-out; }</style>
 </head>
 <body class="bg-white text-slate-900">
-
     <nav class="flex items-center justify-between p-6 border-b border-gray-100">
         <a href="index.html" class="text-2xl font-black tracking-tighter">이지컴스쿨</a>
         <a href="index.html" class="bg-slate-100 px-4 py-2 rounded-full text-sm font-bold hover:bg-slate-200 transition-all">← 메인으로 돌아가기</a>
     </nav>
-
     <div class="max-w-4xl mx-auto py-12 px-6">
-    <h1 class="text-4xl font-extrabold text-slate-900 mb-6">경영정보시각화능력</h1>
-    
-    <div class="relative h-64 overflow-hidden rounded-2xl mb-8">
-        <img src="IMG/tech_1.jfif" class="course-img absolute inset-0 w-full h-full object-cover transition-opacity duration-1000">
-        <img src="IMG/tech_2.jfif" class="course-img absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-0">
-        <img src="IMG/tech_3.jfif" class="course-img absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-0">
-    </div>
-
-    <div class="prose max-w-none text-gray-700 leading-relaxed">
-        <h2 class="text-2xl font-bold mb-4">과정 소개</h2>
-        <p class="mb-6">복잡한 기업 데이터를 직관적인 대시보드로 시각화하여 경영진의 의사결정을 지원하는 전문가 양성 과정입니다.</p>
-
-        <h2 class="text-2xl font-bold mb-4">주요 학습 내용</h2>
-        <ul class="list-disc pl-5 mb-6 space-y-2">
-            <li>데이터 시각화 프로세스 이해</li>
-            <li>BI 도구(Power BI/Tableau) 활용법</li>
-            <li>대시보드 설계 및 인터랙티브 리포팅</li>
-            <li>데이터 기반 경영 성과 분석 실습</li>
-        </ul>
-    </div>
-        <div class="bg-blue-50 p-6 rounded-xl border border-blue-100">
-            <h3 class="font-bold text-blue-900">이런 분들께 추천합니다!</h3>
-            <p>회계·재무 직무 취업을 준비하시는 분, 재무 데이터를 활용한 경영 분석 능력을 갖추고 싶은 예비 전문가.</p>
-        </div>
+        <h1 class="text-4xl font-extrabold mb-6">경영정보시각화능력</h1>
+<div class="relative h-64 overflow-hidden rounded-2xl mb-8">
+    <img src="IMG/bigdata_1.jfif" class="course-img absolute inset-0 w-full h-full object-cover">
+    <img src="IMG/bigdata_2.jfif" class="course-img absolute inset-0 w-full h-full object-cover opacity-0">
+    <img src="IMG/bigdata_3.jfif" class="course-img absolute inset-0 w-full h-full object-cover opacity-0">
 </div>
-
-<script>
-    // 이미지 자동 슬라이드 로직
-    let idx = 0;
-    const imgs = document.querySelectorAll('.course-img');
-    setInterval(() => {
-        imgs[idx].classList.add('opacity-0');
-        idx = (idx + 1) % imgs.length;
-        imgs[idx].classList.remove('opacity-0');
-    }, 3000);
-</script>
+<div class="prose max-w-none text-gray-700 leading-relaxed">
+    <h2 class="text-2xl font-bold mb-4">과정 소개</h2>
+    <p class="mb-6">복잡한 기업 데이터를 직관적인 대시보드로 시각화하는 전문가 양성 과정입니다.</p>
+    <h2 class="text-2xl font-bold mb-4">주요 학습 내용</h2>
+    <ul class="list-disc pl-5 mb-6 space-y-2">
+        <li>데이터 시각화 프로세스 이해</li>
+        <li>BI 도구(Power BI/Tableau) 활용</li>
+        <li>대시보드 설계 및 리포팅</li>
+    </ul>
+    <div class="bg-blue-50 p-6 rounded-xl border border-blue-100">
+        <h3 class="font-bold text-blue-900">이런 분들께 추천합니다!</h3>
+        <p>데이터를 시각화하여 경영진의 의사결정을 돕는 기획·전략 직무 희망자.</p>
+    </div>
+</div>
+    <script>
+        let idx = 0;
+        const imgs = document.querySelectorAll('.course-img');
+        setInterval(() => {
+            imgs[idx].classList.add('opacity-0');
+            idx = (idx + 1) % imgs.length;
+            imgs[idx].classList.remove('opacity-0');
+        }, 3000);
+    </script>
 </body>
 </html>
