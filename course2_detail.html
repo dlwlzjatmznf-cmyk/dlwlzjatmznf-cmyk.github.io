@@ -1,21 +1,31 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>훈련과정 상세 안내</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <title>상세 과정 안내</title>
+    <style>
+        .course-img { transition: opacity 1s ease-in-out; }
+    </style>
 </head>
-<div class="max-w-4xl mx-auto py-12 px-6">
-    <a href="index.html" class="text-blue-600 hover:underline mb-4 block">← 메인으로 돌아가기</a>
+<body class="bg-white text-slate-900">
+
+    <nav class="flex items-center justify-between p-6 border-b border-gray-100">
+        <a href="index.html" class="text-2xl font-black tracking-tighter">이지컴스쿨</a>
+        <a href="index.html" class="bg-slate-100 px-4 py-2 rounded-full text-sm font-bold hover:bg-slate-200 transition-all">← 메인으로 돌아가기</a>
+    </nav>
+
+    <div class="max-w-4xl mx-auto py-12 px-6">
     <h1 class="text-4xl font-extrabold text-slate-900 mb-6">생성형 AI 전문가</h1>
     
     <div class="relative h-64 overflow-hidden rounded-2xl mb-8">
-        <img src="IMG/ai_1.jfif" class="course-img absolute inset-0 w-full h-full object-cover transition-opacity duration-1000">
-        <img src="IMG/ai_2.jfif" class="course-img absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-0">
-        <img src="IMG/ai_3.jfif" class="course-img absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-0">
+        <img src="IMG/fin_1.jfif" class="course-img absolute inset-0 w-full h-full object-cover transition-opacity duration-1000">
+        <img src="IMG/fin_2.jfif" class="course-img absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-0">
+        <img src="IMG/fin_3.jfif" class="course-img absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-0">
     </div>
 
-    <div class="prose max-w-none text-gray-700 leading-relaxed">
+        <div class="prose max-w-none text-gray-700 leading-relaxed">
         <h2 class="text-2xl font-bold mb-4">과정 소개</h2>
         <p class="mb-6">초거대 AI 모델의 원리를 이해하고, 업무 자동화와 콘텐츠 생성에 활용하는 프롬프트 엔지니어링 실무 과정입니다.</p>
 
@@ -28,7 +38,9 @@
         </ul>
     </div>
 </div>
+
 <script>
+    // 이미지 자동 슬라이드 로직
     let idx = 0;
     const imgs = document.querySelectorAll('.course-img');
     setInterval(() => {
@@ -37,4 +49,5 @@
         imgs[idx].classList.remove('opacity-0');
     }, 3000);
 </script>
+</body>
 </html>
