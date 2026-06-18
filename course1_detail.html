@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+    <meta charset="utf-8">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>상세 과정 안내</title>
+</head>
+<body class="bg-slate-50 p-10">
+    <div class="max-w-4xl mx-auto bg-white p-12 rounded-3<!DOCTYPE html>
+<html lang="ko">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>훈련과정 상세 안내</title>
@@ -13,12 +21,12 @@
 
     <nav class="flex items-center justify-between p-6 border-b border-gray-100">
         <a href="index.html" class="text-2xl font-black tracking-tighter">이지컴스쿨</a>
-        
+        <a href="index.html" class="bg-slate-100 px-4 py-2 rounded-full text-sm font-bold hover:bg-slate-200 transition-all">← 메인으로 돌아가기</a>
     </nav>
 
     <div class="max-w-4xl mx-auto py-12 px-6">
     <h1 class="text-4xl font-extrabold text-slate-900 mb-6">재무빅데이터 분석사</h1>
-    <a href="index.html" class="bg-slate-100 px-4 py-2 rounded-full text-sm font-bold hover:bg-slate-200 transition-all">← 메인으로 돌아가기</a>
+ 
     <div class="relative h-64 overflow-hidden rounded-2xl mb-8">
         <img src="IMG/fin_1.jfif" class="course-img absolute inset-0 w-full h-full object-cover transition-opacity duration-1000">
         <img src="IMG/fin_2.jfif" class="course-img absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-0">
@@ -46,6 +54,21 @@
         </div>
     </div>
 </div>
+<script>
+    // 이미지 자동 슬라이드 로직
+    let idx = 0;
+    const imgs = document.querySelectorAll('.course-img');
+    setInterval(() => {
+        imgs[idx].classList.add('opacity-0');
+        idx = (idx + 1) % imgs.length;
+        imgs[idx].classList.remove('opacity-0');
+    }, 3000);
+</script>
+</body>
+</html>
+
+        
+
 
 <script>
     // 이미지 자동 슬라이드 로직
