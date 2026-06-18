@@ -347,36 +347,57 @@
     const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbyUHfGPb6B6tgn-A7EaN7C-D-qFZzdxirj6de-CtixqQp_P3pneXcnNtucU2dsWNlvdZg/exec";
 
     // 01. 공지사항 목록 불러오기 (페이지 로드 시)
-function loadNoticeList() {
+let globalNoticeList = [];
+
+// ★ 공지사항과 상담게시판을 단 1번의 호출로 동시에 로딩합니다.
+function loadInitialData() {
     fetch(WEB_APP_URL, {
         method: 'POST',
-        body: JSON.stringify({ action: "notice" }) // 이 명령어 단어가 다를 수 있습니다.
+        body: JSON.stringify({ action: "init" })
     })
     .then(res => res.json())
     .then(res => {
-        // 1. 서버가 보내준 응답을 팝업창으로 직접 확인합니다.
-        alert("서버 응답 결과: " + JSON.stringify(res));
-        
         if(res.result === "success") {
-            globalNoticeList = res.data; 
-            const container = document.getElementById('notice-list');
-            container.innerHTML = res.data.map((item, index) => `
+            // 1. 공지사항 그리기 (배열 인덱스 방식으로 깨짐 방지)
+            globalNoticeList = res.noticeData; 
+            const noticeContainer = document.getElementById('notice-list');
+            noticeContainer.innerHTML = res.noticeData.map((item, index) => `
                 <div class="border-b py-3">
                     <div class="flex justify-between cursor-pointer" onclick="showNoticeAlert(${index})">
-                        <span class="font-bold">${item.title}</span>
+                        <span class="font-bold">[${item.type}] ${item.title}</span>
                         <span class="text-slate-400 text-xs">${item.date}</span>
                     </div>
                 </div>
             `).join('');
+
+            // 2. 상담게시판 1페이지 그리기
+            const counselContainer = document.getElementById('counsel-list');
+            counselContainer.innerHTML = res.counselData.map(item => `
+                <div class="border-b py-3 flex justify-between items-center cursor-pointer" onclick="openPasswordModal('${item.id}')">
+                    <div>
+                        <div class="font-bold text-gray-800">${item.title} <span class="text-xs text-blue-500 bg-blue-50 px-2 py-1 rounded ml-2">${item.status}</span></div>
+                        <div class="text-xs text-gray-500 mt-1">${item.name} | ${item.date}</div>
+                    </div>
+                </div>
+            `).join('');
+
+            // 3. 페이지네이션 갱신
+            totalPage = res.totalPage;
+            renderPagination();
+        } else {
+            alert("데이터를 불러오지 못했습니다: " + res.message);
         }
     })
     .catch(error => {
-        // 2. 에러가 발생했다면 에러 내용도 팝업으로 띄웁니다.
-        alert("네트워크 또는 파싱 에러 발생: " + error.message);
-    })
-    .finally(() => {
-        loadCounselList(); 
+        console.error("초기 로딩 오류:", error);
     });
+}
+
+// 공지사항 알림창 띄우기 함수
+function showNoticeAlert(index) {
+    if (globalNoticeList[index] && globalNoticeList[index].detail) {
+        alert(globalNoticeList[index].detail);
+    }
 }
         
 // 1. 상담 게시판 목록 불러오기 (페이지 번호 지원)
@@ -456,7 +477,8 @@ function loadCounselList(page = 1) {
             }
         });
     }
-loadCounselList(); // 상담게시판 실행    
+// 스크립트 맨 아래 (최초 실행)
+loadInitialData();
 </script>
 </body>
 </html>
