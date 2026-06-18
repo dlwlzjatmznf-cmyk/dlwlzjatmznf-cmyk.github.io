@@ -1,14 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="utf-8">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <title>상세 과정 안내</title>
-</head>
-<body class="bg-slate-50 p-10">
-    <div class="max-w-4xl mx-auto bg-white p-12 rounded-3<!DOCTYPE html>
-<html lang="ko">
-<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>훈련과정 상세 안내</title>
@@ -25,44 +17,47 @@
     </nav>
 
     <div class="max-w-4xl mx-auto py-12 px-6">
-    <h1 class="text-4xl font-extrabold text-slate-900 mb-6">재무빅데이터 분석사</h1>
+        <h1 class="text-4xl font-extrabold text-slate-900 mb-6">재무빅데이터 분석사</h1>
  
-    <div class="relative h-64 overflow-hidden rounded-2xl mb-8">
-        <img src="IMG/bigdata_1.jfif" class="course-img absolute inset-0 w-full h-full object-cover transition-opacity duration-1000">
-        <img src="IMG/bigdata_2.jfif" class="course-img absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-0">
-        <img src="IMG/bigdata_3.jfif" class="course-img absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-0">
-    </div>
-
-    <div class="prose max-w-none text-gray-700 leading-relaxed">
-        <h2 class="text-2xl font-bold mb-4">과정 소개</h2>
-        <p class="mb-6">
-            기업의 재무 데이터를 수집, 정제, 분석하여 의사결정에 필요한 통찰을 도출하는 융합 인재 양성 과정입니다. 
-            회계 지식에 데이터 분석 도구를 더해 실무 경쟁력을 극대화합니다.
-        </p>
-
-        <h2 class="text-2xl font-bold mb-4">주요 학습 내용</h2>
-        <ul class="list-disc pl-5 mb-6 space-y-2">
-            <li>재무제표 분석 및 핵심 지표 추출</li>
-            <li>데이터 수집(Crawling) 및 전처리 기법</li>
-            <li>통계 분석 및 시각화(Python/Tableau 활용)</li>
-            <li>데이터 기반 경영 의사결정 사례 연구</li>
-        </ul>
-    </div>
-        <div class="bg-blue-50 p-6 rounded-xl border border-blue-100">
-            <h3 class="font-bold text-blue-900">이런 분들께 추천합니다!</h3>
-            <p>회계·재무 직무 취업을 준비하시는 분, 재무 데이터를 활용한 경영 분석 능력을 갖추고 싶은 예비 전문가.</p>
+        <div class="relative h-64 overflow-hidden rounded-2xl mb-8">
+            <img src="IMG/bigdata_1.jfif" class="course-img absolute inset-0 w-full h-full object-cover transition-opacity duration-1000">
+            <img src="IMG/bigdata_2.jfif" class="course-img absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-0">
+            <img src="IMG/bigdata_3.jfif" class="course-img absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-0">
         </div>
 
-</div>
-<script>
-    // 이미지 자동 슬라이드 로직
-    let idx = 0;
-    const imgs = document.querySelectorAll('.course-img');
-    setInterval(() => {
-        imgs[idx].classList.add('opacity-0');
-        idx = (idx + 1) % imgs.length;
-        imgs[idx].classList.remove('opacity-0');
-    }, 3000);
-</script>
+        <div class="prose max-w-none text-gray-700 leading-relaxed">
+            <h2 class="text-2xl font-bold mb-4">과정 소개</h2>
+            <p class="mb-6">
+                기업의 재무 데이터를 수집, 정제, 분석하여 의사결정에 필요한 통찰을 도출하는 융합 인재 양성 과정입니다. 
+                회계 지식에 데이터 분석 도구를 더해 실무 경쟁력을 극대화합니다.
+            </p>
+
+            <h2 class="text-2xl font-bold mb-4">주요 학습 내용</h2>
+            <ul class="list-disc pl-5 mb-6 space-y-2">
+                <li>재무제표 분석 및 핵심 지표 추출</li>
+                <li>데이터 수집(Crawling) 및 전처리 기법</li>
+                <li>통계 분석 및 시각화(Python/Tableau 활용)</li>
+                <li>데이터 기반 경영 의사결정 사례 연구</li>
+            </ul>
+
+            <div class="bg-blue-50 p-6 rounded-xl border border-blue-100">
+                <h3 class="font-bold text-blue-900">이런 분들께 추천합니다!</h3>
+                <p>회계·재무 직무 취업을 준비하시는 분, 재무 데이터를 활용한 경영 분석 능력을 갖추고 싶은 예비 전문가.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 이미지 자동 슬라이드 로직
+        let idx = 0;
+        const imgs = document.querySelectorAll('.course-img');
+        if(imgs.length > 0) {
+            setInterval(() => {
+                imgs[idx].classList.add('opacity-0');
+                idx = (idx + 1) % imgs.length;
+                imgs[idx].classList.remove('opacity-0');
+            }, 3000);
+        }
+    </script>
 </body>
 </html>
