@@ -347,26 +347,29 @@
     const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbyUHfGPb6B6tgn-A7EaN7C-D-qFZzdxirj6de-CtixqQp_P3pneXcnNtucU2dsWNlvdZg/exec";
 
     // 01. 공지사항 목록 불러오기 (페이지 로드 시)
-    function loadNoticeList() {
-        fetch(WEB_APP_URL, {
-            method: 'POST',
-            body: JSON.stringify({ action: "notice" })
-        })
-        .then(res => res.json())
-        .then(res => {
-            if(res.result === "success") {
-                const container = document.getElementById('notice-list');
-                container.innerHTML = res.data.map(item => `
-                    <div class="border-b py-3">
-                        <div class="flex justify-between cursor-pointer" onclick="alert('${item.detail}')">
-                            <span class="font-bold">${item.title}</span>
-                            <span class="text-slate-400 text-xs">${item.date}</span>
-                        </div>
+function loadNoticeList() {
+    fetch(WEB_APP_URL, {
+        method: 'POST',
+        body: JSON.stringify({ action: "notice" })
+    })
+    .then(res => res.json())
+    .then(res => {
+        if(res.result === "success") {
+            const container = document.getElementById('notice-list');
+            container.innerHTML = res.data.map(item => `
+                <div class="border-b py-3">
+                    <div class="flex justify-between cursor-pointer" onclick="alert('${item.detail}')">
+                        <span class="font-bold">${item.title}</span>
+                        <span class="text-slate-400 text-xs">${item.date}</span>
                     </div>
-                `).join('');
-            }
-        });
-    }
+                </div>
+            `).join('');
+        }
+        
+        // ★ 1단계 핵심 포인트: 공지사항 로딩이 끝난 후 상담게시판을 호출합니다.
+        loadCounselList(); 
+    });
+}
         
 // 1. 상담 게시판 목록 불러오기 (페이지 번호 지원)
 function loadCounselList(page = 1) {
@@ -445,7 +448,6 @@ function loadCounselList(page = 1) {
             }
         });
     }
-loadNoticeList();  // 공지사항 실행
 loadCounselList(); // 상담게시판 실행    
 </script>
 </body>
