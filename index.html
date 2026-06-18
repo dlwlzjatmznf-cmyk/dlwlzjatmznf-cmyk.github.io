@@ -347,6 +347,9 @@
     const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbyUHfGPb6B6tgn-A7EaN7C-D-qFZzdxirj6de-CtixqQp_P3pneXcnNtucU2dsWNlvdZg/exec";
 
     // 01. 공지사항 목록 불러오기 (페이지 로드 시)
+// 1. 공지사항 데이터를 안전하게 임시 보관할 그릇을 만듭니다.
+let globalNoticeList = [];
+
 function loadNoticeList() {
     fetch(WEB_APP_URL, {
         method: 'POST',
@@ -355,10 +358,14 @@ function loadNoticeList() {
     .then(res => res.json())
     .then(res => {
         if(res.result === "success") {
+            // 가져온 데이터를 전역 변수에 안전하게 저장 (따옴표, 줄바꿈 깨짐 방지)
+            globalNoticeList = res.data; 
+            
             const container = document.getElementById('notice-list');
-            container.innerHTML = res.data.map(item => `
+            // ★ 핵심 수정: item.detail을 직접 넣지 않고, 몇 번째(index)인지만 전달합니다.
+            container.innerHTML = res.data.map((item, index) => `
                 <div class="border-b py-3">
-                    <div class="flex justify-between cursor-pointer" onclick="alert('${item.detail}')">
+                    <div class="flex justify-between cursor-pointer" onclick="showNoticeAlert(${index})">
                         <span class="font-bold">${item.title}</span>
                         <span class="text-slate-400 text-xs">${item.date}</span>
                     </div>
@@ -367,13 +374,19 @@ function loadNoticeList() {
         }
     })
     .catch(error => {
-        // 공지사항에서 에러가 발생해도 시스템이 멈추지 않게 처리합니다.
         console.error("공지사항 로딩 중 오류:", error);
     })
     .finally(() => {
-        // ★ 핵심 방어 코드: 공지사항 성공/실패 여부와 상관없이 무조건 상담게시판을 이어서 호출합니다!
+        // 공지사항 처리가 끝나면 무조건 상담게시판을 호출합니다.
         loadCounselList(); 
     });
+}
+
+// 2. 글자 깨짐 없이 안전하게 알림창을 띄워주는 함수를 추가합니다.
+function showNoticeAlert(index) {
+    if (globalNoticeList[index]) {
+        alert(globalNoticeList[index].detail);
+    }
 }
         
 // 1. 상담 게시판 목록 불러오기 (페이지 번호 지원)
